@@ -12,5 +12,5 @@ from bs4 import BeautifulSoup
 tag = soup.b
 print(tag)'''
 #r = requests.options('http://www.folklore.ee/rl/date/robotid/leht1.html')
-r = requests.post('http://www.folklore.ee/rl/date/robotid/leht1.html', data = {"/html/body/center/table[2]/tbody/tr[1]/td[1]/form/inFUCKFUCKFUCKput[1]":"mees"}) #response 200
+r = requests.post('http://www.folklore.ee/rl/date/robotid/leht1.html', data = {"/html/body/center/table[2]/tbody/tr[1]/td[1]/form/inFUCKFUCKFUCKput[1]":"mees"}) ###response 200
 print(r.text.encode("utf-8"))
