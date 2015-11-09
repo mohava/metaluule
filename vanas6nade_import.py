@@ -13,5 +13,6 @@ print(r.content) # selline html-kood on r.content -is
 soup = BeautifulSoup(r.content, "html.parser")
 #print(soup.prettify())
 #print(soup.body.table.get_text())
-print(soup.body.table.get_text()) #ma proovin seda veel normaalsemale kujule saada
+print(soup.body.table.get_text())
 
+#panna tagastama listi, kus elementideks (id, vanasona, autentseid tekste)
