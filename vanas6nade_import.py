@@ -1,18 +1,36 @@
 import requests
 from bs4 import BeautifulSoup
-'''#defineeri siia funktisoon, mis võtab sisendiks sõna ja tagastab listi,
-#  kus on kõik päringust saadud vanasõnad (iga vanasõna on listi üks element) '''
+def kysi_vanas6nad(sona):
+    r = requests.post('http://www.folklore.ee/cgi-bin/script1', data = {"entry":sona})
+    #print(r.content) # selline html-kood on r.content -is
 
-#def kysi_vanas6nad(sõna):
-sona = "naine"
+    soup = BeautifulSoup(r.content, "html.parser")
+    #print(soup.body.table.get_text())
+    vanasonad = soup.body.table.get_text()
 
-r = requests.post('http://www.folklore.ee/cgi-bin/script1', data = {"entry":sona})
-print(r.content) # selline html-kood on r.content -is
+    list = []
+    a,b,c = '','','' #kus a on vanasõna id, b on vanasõna, c on autentsete tekstide arv
+    olinumber=False
+    joutudvanasonani=False
 
-
-soup = BeautifulSoup(r.content, "html.parser")
-#print(soup.prettify())
-#print(soup.body.table.get_text())
-print(soup.body.table.get_text())
-
-#panna tagastama listi, kus elementideks (id, vanasona, autentseid tekste)
+    for element in vanasonad:
+        if element == '\n' and joutudvanasonani == True:
+            list.append((int(a),b,int(c)))
+            a,b,c = '','',''
+            olinumber=False
+            joutudvanasonani=False
+        elif element == '\r': # et vanasõna hulka ei tuleks sellist sümbolit
+            1
+        else:
+            if element.isdigit():
+                olinumber=True
+                if joutudvanasonani:
+                    c+=element
+                else:
+                    a+=element
+            else:
+                if olinumber:
+                    joutudvanasonani=True
+                    b+=element
+    return list
+#print(kysi_vanas6nad('mees'))
