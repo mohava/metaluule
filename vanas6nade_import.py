@@ -33,4 +33,3 @@ def kysi_vanas6nad(sona):
                     joutudvanasonani=True
                     b+=element
     return list
-#print(kysi_vanas6nad('mees'))
