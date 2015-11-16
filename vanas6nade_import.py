@@ -2,7 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 def kysi_vanas6nad(sona):
     r = requests.post('http://www.folklore.ee/cgi-bin/script1', data = {"entry":sona.encode("iso-8859-1")})
-    print(r.content) # selline html-kood on r.content -is
+    #print(r.content) # selline html-kood on r.content -is
 
     soup = BeautifulSoup(r.content, "html.parser", )
     #print(soup.body.table.get_text())
@@ -36,4 +36,4 @@ def kysi_vanas6nad(sona):
                     joutudvanasonani=True
                     b+=element
     return list
-print(kysi_vanas6nad('õde'))
+#print(kysi_vanas6nad('õde'))
