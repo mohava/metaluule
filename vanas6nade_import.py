@@ -1,13 +1,16 @@
 import requests
 from bs4 import BeautifulSoup
 def kysi_vanas6nad(sona):
-    r = requests.post('http://www.folklore.ee/cgi-bin/script1', data = {"entry":sona})
-    #print(r.content) # selline html-kood on r.content -is
+    r = requests.post('http://www.folklore.ee/cgi-bin/script1', data = {"entry":sona.encode("iso-8859-1")})
+    print(r.content) # selline html-kood on r.content -is
 
-    soup = BeautifulSoup(r.content, "html.parser")
+    soup = BeautifulSoup(r.content, "html.parser", )
     #print(soup.body.table.get_text())
-    vanasonad = soup.body.table.get_text()
-
+    try:
+        vanasonad = soup.body.table.get_text()
+    except:
+        print("Päringule ei vasta vanasõnu.")
+        return None #seda rida vist ei ole siia vaja?
     list = []
     a,b,c = '','','' #kus a on vanasõna id, b on vanasõna, c on autentsete tekstide arv
     olinumber=False
@@ -33,4 +36,4 @@ def kysi_vanas6nad(sona):
                     joutudvanasonani=True
                     b+=element
     return list
-#print(kysi_vanas6nad('mees'))
+print(kysi_vanas6nad('õde'))
