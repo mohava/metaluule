@@ -6,9 +6,9 @@ from random import randint
 #parameetrid: sõna asetus, vanasõna pikkus
 def leia_vanas6nade_parameetrid(v6tmes6na, uued_vanas6nad):
     parameetrid=defaultdict(list)
-    #print(v6tmes6na)
     for idNumber, vanas6na, levik in uued_vanas6nad:
-        #print(vanas6na)
+        print(v6tmes6na)
+        print(vanas6na)
         vanas6na = vanas6na.lower()
         s6na_asetus = vanas6na.index(v6tmes6na)
         vanas6na_pikkus = len(vanas6na)
@@ -19,7 +19,7 @@ def leia_vanas6nade_parameetrid(v6tmes6na, uued_vanas6nad):
 
 #KAALUD: võtmesõna indeks, vanasõna pikkus, juhuslik arv 0 ja 100 vahel
 #KAALUD tegemata:  leidub sõna täpsel kujul, vanasõna levik
-def leia_parim_vanas6na(parameetrid, eeltekst, kaalud=[-1,-0.7, 0.1]):
+def leia_parim_vanas6na(parameetrid, eeltekst, kaalud=[-1,-0.6, 0]):
     skoorid = []
     for vanas6na in parameetrid:
         s6na_indeks, vanas6na_pikkus = parameetrid[vanas6na]
@@ -49,17 +49,17 @@ def kirjuta_rida(v6tmes6na, eeltekst):
     viimane_s6na = s6nad[-1]
     return rida, viimane_s6na
 
-def tee_luuletus(v6tmes6na, eeltekst=[""], loendur=0):
+def tee_luuletus(v6tmes6na, eeltekst=[""], loendur=0, ridu=12):
     loendur +=1
-    if loendur == 10:
+    if loendur == ridu:
         return eeltekst
     if eeltekst[-1] == "luuletus sai läbi":
         eeltekst = eeltekst.remove("luuletus sai läbi")
         return eeltekst
     rida, viimane_s6na = kirjuta_rida(v6tmes6na, eeltekst)
     eeltekst.append(rida)
-    v6tmes6na = viimane_s6na
-    tee_luuletus(v6tmes6na, eeltekst, loendur)
+    v6tmes6na = viimane_s6na.strip(".")
+    tee_luuletus(v6tmes6na, eeltekst, loendur, ridu)
     return eeltekst
 
 
@@ -67,7 +67,7 @@ def tee_luuletus(v6tmes6na, eeltekst=[""], loendur=0):
 #MAIN
 #algs6na = input("Algsõna: ")
 
-luuletus = tee_luuletus("ilus")
+luuletus = tee_luuletus("kole", ridu=20)
 for line in luuletus:
     print(line)
 
