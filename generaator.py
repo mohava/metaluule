@@ -3,6 +3,8 @@ from vanas6nade_import import kysi_vanas6nad
 from collections import defaultdict
 from random import randint
 
+#TEGEMATA: puhasta vanasõnad: võta ära on ja ole
+
 #parameetrid: sõna asetus, vanasõna pikkus
 def leia_vanas6nade_parameetrid(v6tmes6na, uued_vanas6nad):
     parameetrid=defaultdict(list)
@@ -70,7 +72,3 @@ def tee_luuletus(v6tmes6na, eeltekst=[""], loendur=0, ridu=12):
 luuletus = tee_luuletus("kole", ridu=20)
 for line in luuletus:
     print(line)
-
-#TEHA
-#features: lemmatiseerija, süntesaator
-#input: uudised
