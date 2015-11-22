@@ -21,7 +21,7 @@ def leia_vanas6nade_parameetrid(v6tmes6na, uued_vanas6nad, originaals6na):
 
 #KAALUD: võtmesõna indeks, vanasõna pikkus, juhuslikkus, leidub sõna esialgsel kujul (mitte lemma), vanas6na levik,
 #  v6tmesõna suhteline asetus, võtmesõna täpsel kujul
-def leia_parim_vanas6na(parameetrid, eeltekst, kaalud=[-0.5,-0.7, 0.1, 1, 0.1, -0.5, 0.1]):
+def leia_parim_vanas6na(parameetrid, eeltekst, kaalud=[-0,-0.7, 0.2, 1, 0.1, -0.5, 0.1]):
     skoorid = []
     for vanas6na in parameetrid:
         s6na_indeks, vanas6na_pikkus, originaals6na, levik, v6tmes6na_t2psel_kujul = parameetrid[vanas6na]
@@ -40,7 +40,7 @@ def leia_parim_vanas6na(parameetrid, eeltekst, kaalud=[-0.5,-0.7, 0.1, 1, 0.1, -
     return ("luuletus sai läbi")
 
 def kirjuta_rida(v6tmes6na, eeltekst):
-    print("võtmesõna: ",v6tmes6na)
+    #print("võtmesõna: ",v6tmes6na)
     vanas6nad = kysi_vanas6nad(v6tmes6na)
     parameetrid = leia_vanas6nade_parameetrid(v6tmes6na, vanas6nad, True)
     rida = leia_parim_vanas6na(parameetrid, eeltekst)
@@ -69,7 +69,7 @@ def tee_luuletus(v6tmes6na, eeltekst=[""], loendur=0, ridu=12):
     tee_luuletus(v6tmes6na, eeltekst, loendur, ridu)
     return eeltekst
 
-
+#TEHA: sõnade järjekorra ümber tõstimne, mitmeharuline rekursioon (kogu luuletuse skoori arvutamine) ja parima luuletuse esitamine
 
 #MAIN
 #algs6na = input("Algsõna: ")
