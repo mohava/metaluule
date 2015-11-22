@@ -10,7 +10,7 @@ def kysi_vanas6nad(sona):
         vanasonad = soup.body.table.get_text()
     except:
         print("Päringule ei vasta vanasõnu.")
-        return None #seda rida vist ei ole siia vaja?
+        return {} #seda rida vist ei ole siia vaja?
     list = []
     a,b,c = '','','' #kus a on vanasõna id, b on vanasõna, c on autentsete tekstide arv
     olinumber=False

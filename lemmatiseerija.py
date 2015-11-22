@@ -15,4 +15,4 @@ def lemmatiseeri(s6na):
             sõnatüved.add(element)
     return sõnatüved #vahel on s6navormil mitu sobivat tüve kasin: kasima ja kasin
 
-#print(lemmatiseeri(""))
+print(lemmatiseeri("tegemata"))
