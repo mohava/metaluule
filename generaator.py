@@ -70,6 +70,7 @@ def tee_luuletus(v6tmes6na, eeltekst=[""], loendur=0, ridu=12):
     return eeltekst
 
 #TEHA: sõnade järjekorra ümber tõstimne, mitmeharuline rekursioon (kogu luuletuse skoori arvutamine) ja parima luuletuse esitamine
+#TEHA: kui ei leia viimast sõna siis lisada rida "viimane sõna, riimuv sõna" kus riimuv sõna on sama lõpu ja silpide arvuga
 
 #MAIN
 #algs6na = input("Algsõna: ")
