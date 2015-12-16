@@ -33,8 +33,12 @@ ttk.Label(mainframe, textvariable=luuletus).grid(column=2, row=2, sticky=(W, E))
 ttk.Button(mainframe, text="Genereeri", command=kuva_luuletus).grid(column=3, row=1, sticky=W)
 
 ttk.Label(mainframe, text="Võtmesõna: ").grid(column=1, row=1, sticky=E)
-ttk.Label(mainframe, text="Luuletus: ").grid(column=1, row=2, sticky=E)
-ttk.Label(mainframe, text="M.K. \n K.K.").grid(column=3, row=2, sticky=(E,S))
+ttk.Label(mainframe, text="M. Kohava").grid(column=1, row=3, sticky=W)
+ttk.Label(mainframe, text="K. Kängsepp").grid(column=3, row=3, sticky=W)
+image1 = PhotoImage(file='kk1.png')
+image2 = PhotoImage(file='kk2.png')
+ttk.Label(mainframe, image = image1).grid(column=1, row=2, sticky=E)
+ttk.Label(mainframe, image = image2).grid(column=3, row=2, sticky=E)
 
 for child in mainframe.winfo_children(): child.grid_configure(padx=5, pady=5)
 
