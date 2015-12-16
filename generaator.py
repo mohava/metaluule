@@ -39,7 +39,7 @@ def leia_parim_vanas6na(parameetrid, eeltekst, kaalud=[-0.5,-0.2, 0.2, 1, 0.2, -
             return ("luuletus sai läbi")
     return ("luuletus sai läbi")
 
-def kirjuta_rida(v6tmes6na, eeltekst):
+def kirjuta_rida(v6tmes6na, eeltekst, kaalud):
     #print("võtmesõna: ",v6tmes6na)
     vanas6nad = kysi_vanas6nad(v6tmes6na)
     parameetrid = leia_vanas6nade_parameetrid(v6tmes6na, vanas6nad, True)
@@ -51,19 +51,19 @@ def kirjuta_rida(v6tmes6na, eeltekst):
         for v6tmes6na in v6tmes6nad:
             vanas6nad = kysi_vanas6nad(v6tmes6na)
             parameetrid = leia_vanas6nade_parameetrid(v6tmes6na, vanas6nad, False)
-            rida = leia_parim_vanas6na(parameetrid, eeltekst)
+            rida = leia_parim_vanas6na(parameetrid, eeltekst, kaalud)
     s6nad = rida.split()
     viimane_s6na = s6nad[-1]
     return rida, viimane_s6na
 
-def tee_luuletus(v6tmes6na, eeltekst=[""], loendur=0, ridu=12):
+def tee_luuletus(v6tmes6na, eeltekst=[""], loendur=0, ridu=12, kaalud=[-0.5,-0.2, 0.2, 1, 0.2, -0.5, 0.1]):
     loendur +=1
     if loendur == ridu:
         return eeltekst
     if eeltekst[-1] == "luuletus sai läbi":
         eeltekst = eeltekst.remove("luuletus sai läbi")
         return eeltekst
-    rida, viimane_s6na = kirjuta_rida(v6tmes6na, eeltekst)
+    rida, viimane_s6na = kirjuta_rida(v6tmes6na, eeltekst, kaalud)
     eeltekst.append(rida)
     v6tmes6na = viimane_s6na.strip(".")
     tee_luuletus(v6tmes6na, eeltekst, loendur, ridu)
