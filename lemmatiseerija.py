@@ -15,4 +15,4 @@ def lemmatiseeri(sona):
             sõnatyved.add(element)
     return sõnatyved #vahel on s6navormil mitu sobivat tüve kasin: kasima ja kasin
 
-print(lemmatiseeri("õe"))
+#print(lemmatiseeri("õe"))

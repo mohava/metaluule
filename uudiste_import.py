@@ -1,7 +1,15 @@
-__author__ =
 import requests
 from bs4 import BeautifulSoup
+#DELFI, ERR, PM, Ã„RILEHT, NAISTEKAS??, ELU 24...
+def improdi_uudised():
+    r = requests.get("http://uudised.err.ee/uudised")
+    soup = BeautifulSoup(r.content, "html.parser")
+    #vanas6nad = soup.html.body.div.div.div.encode("utf-8")
+    vanas6nad = soup.html.body.div.div.div.encode("utf-8")
 
-def improdi_uudised(v6tms6na, uudisteportaalid (hulk)):
-    #DELFI, ERR, PM, ÄRILEHT, NAISTEKS, ELU 24...
-    return pealkirjad # [{portaal, pealkiri, kommentaaride arv).....]
+
+    print(vanas6nad)
+    #return pealkirjad # [{portaal, pealkiri, kommentaaride arv).....]
+
+
+improdi_uudised()

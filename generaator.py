@@ -56,7 +56,7 @@ def kirjuta_rida(v6tmes6na, eeltekst):
     viimane_s6na = s6nad[-1]
     return rida, viimane_s6na
 
-def tee_luuletus(v6tmes6na, eeltekst=[""], loendur=0, ridu=12):
+def tee_luuletus(v6tmes6na="", eeltekst=[""], loendur=0, ridu=12):
     loendur +=1
     if loendur == ridu:
         return eeltekst
@@ -75,7 +75,6 @@ def tee_luuletus(v6tmes6na, eeltekst=[""], loendur=0, ridu=12):
 #MAIN
 #algs6na = input("Algsõna: ")
 
-
-luuletus = tee_luuletus("naine", ridu=30)
+luuletus = tee_luuletus(ridu=30)
 for line in luuletus:
     print(line)
