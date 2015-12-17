@@ -64,7 +64,7 @@ levik.grid(column=2, row=7)
 ttk.Label(mainframe, text="ÕIGUS").grid(column=1, row=8, sticky=E)
 asetus = ttk.Scale(mainframe, orient=HORIZONTAL, length=100, from_=-0.4, to=-0.7)
 asetus.grid(column=2, row=8)
-
+asetus.set(-0.5)
 
 for child in mainframe.winfo_children(): child.grid_configure(padx=5, pady=5)
 
