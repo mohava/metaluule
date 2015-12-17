@@ -62,9 +62,9 @@ esialgsus.grid(column=2, row=6)
 esialgsus.set(0.2)
 
 ttk.Label(mainframe, text="AU").grid(column=1, row=7, sticky=E)
-levik = ttk.Scale(mainframe, orient=HORIZONTAL, length=100, from_=0.1, to=1.0)
+levik = ttk.Scale(mainframe, orient=HORIZONTAL, length=100, from_=0, to=1.0)
 levik.grid(column=2, row=7)
-levik.set(0.5)
+levik.set(0.1)
 
 ttk.Label(mainframe, text="ÕIGUS").grid(column=1, row=8, sticky=E)
 t2psus = ttk.Scale(mainframe, orient=HORIZONTAL, length=100, from_=0.1, to=0.7)
