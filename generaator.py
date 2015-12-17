@@ -80,6 +80,7 @@ def tee_luuletus(v6tmes6na, kaalud, eeltekst=[""], loendur=0, ridu=12):
 
 ###MAIN###
 
+
 '''
 luuletus = tee_luuletus("mees", ridu=14)
 for line in luuletus:
