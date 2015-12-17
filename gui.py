@@ -6,7 +6,7 @@ def kuva_luuletus(*args):
     luuletus.set("LUULETUST GENEREERITAKSE...")
     root.update()
     s6na = str(võtmes6na.get())
-    kaalud=[asetus.get(),rea_pikkus.get(),juhuslikkus.get(),t2psus.get(),levik.get(),asetus.get(),t2psus.get()]
+    kaalud=[asetus.get(),rea_pikkus.get(),juhuslikkus.get(),t2psus.get(),levik.get(),asetus2.get(),t2psus.get()]
     #kui slaidereid ei liiguta, siis nende väärtuseks 0 !!!
     ridadelist = tee_luuletus(s6na, kaalud, eeltekst=[""], loendur=0, ridu=12)
     teksti_kujul = ""
@@ -51,24 +51,29 @@ rea_pikkus = ttk.Scale(mainframe, orient=HORIZONTAL, length=100, from_=-1, to=-0
 rea_pikkus.grid(column=2, row=4)
 rea_pikkus.set(-0.7)
 
-ttk.Label(mainframe, text="RAUD JA KIVI").grid(column=1, row=5, sticky=E)
+ttk.Label(mainframe, text="TÖÖ").grid(column=1, row=5, sticky=E)
 asetus = ttk.Scale(mainframe, orient=HORIZONTAL, length=100, from_=-0.4, to=-0.7)
 asetus.grid(column=2, row=5)
 asetus.set(-0.5)
 
-ttk.Label(mainframe, text="ARMASTUS").grid(column=1, row=6, sticky=E)
+ttk.Label(mainframe, text="KARISTUS").grid(column=1, row=6, sticky=E)
+asetus2 = ttk.Scale(mainframe, orient=HORIZONTAL, length=100, from_=-0.4, to=-0.7)
+asetus2.grid(column=2, row=6)
+asetus2.set(-0.5)
+
+ttk.Label(mainframe, text="ARMASTUS").grid(column=1, row=7, sticky=E)
 esialgsus = ttk.Scale(mainframe, orient=HORIZONTAL, length=100, from_=0.1, to=0.7)
-esialgsus.grid(column=2, row=6)
+esialgsus.grid(column=2, row=7)
 esialgsus.set(0.2)
 
-ttk.Label(mainframe, text="AU").grid(column=1, row=7, sticky=E)
+ttk.Label(mainframe, text="AU").grid(column=1, row=8, sticky=E)
 levik = ttk.Scale(mainframe, orient=HORIZONTAL, length=100, from_=0, to=1.0)
-levik.grid(column=2, row=7)
-levik.set(0.1)
+levik.grid(column=2, row=8)
+levik.set(0)
 
-ttk.Label(mainframe, text="ÕIGUS").grid(column=1, row=8, sticky=E)
+ttk.Label(mainframe, text="ÕIGUS").grid(column=1, row=9, sticky=E)
 t2psus = ttk.Scale(mainframe, orient=HORIZONTAL, length=100, from_=0.1, to=0.7)
-t2psus.grid(column=2, row=8)
+t2psus.grid(column=2, row=9)
 t2psus.set(0.2)
 
 for child in mainframe.winfo_children(): child.grid_configure(padx=5, pady=5)
