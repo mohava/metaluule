@@ -4,6 +4,7 @@ from collections import defaultdict
 from random import randint
 from lemmatiseerija import lemmatiseeri
 from lyhendaja import lyhenda
+#from gui import kaalud
 
 #parameetrid: sõna asetus, vanasõna pikkus
 def leia_vanas6nade_parameetrid(v6tmes6na, uued_vanas6nad, originaals6na):
@@ -18,10 +19,12 @@ def leia_vanas6nade_parameetrid(v6tmes6na, uued_vanas6nad, originaals6na):
     return parameetrid
 
 #kood on kirjutatud pidades silmas, et siina vahel saaks olla kaalude optimeerimise funktsioon
+#kaalud = kaalud()
 
 #KAALUD: võtmesõna indeks, vanasõna pikkus, juhuslikkus, leidub sõna esialgsel kujul (mitte lemma), vanas6na levik,
 #       v6tmesõna suhteline asetus, võtmesõna täpsel kujul (mitte sõna osana)
-def leia_parim_vanas6na(parameetrid, eeltekst, kaalud=[-0.5,-0.2, 0.2, 1, 0.2, -0.5, 0.1]):
+def leia_parim_vanas6na(parameetrid, eeltekst, kaalud=[-0.5,-0.7, 0.5, 0.2, 0.5, -0.5, 0.2]):
+    print(kaalud)
     skoorid = []
     for vanas6na in parameetrid:
         s6na_indeks, vanas6na_pikkus, originaals6na, levik, v6tmes6na_t2psel_kujul = parameetrid[vanas6na]
@@ -39,11 +42,11 @@ def leia_parim_vanas6na(parameetrid, eeltekst, kaalud=[-0.5,-0.2, 0.2, 1, 0.2, -
             return ("luuletus sai läbi")
     return ("luuletus sai läbi")
 
-def kirjuta_rida(v6tmes6na, eeltekst, kaalud):
+def kirjuta_rida(v6tmes6na, kaalud, eeltekst):
     #print("võtmesõna: ",v6tmes6na)
     vanas6nad = kysi_vanas6nad(v6tmes6na)
     parameetrid = leia_vanas6nade_parameetrid(v6tmes6na, vanas6nad, True)
-    rida = leia_parim_vanas6na(parameetrid, eeltekst)
+    rida = leia_parim_vanas6na(parameetrid, eeltekst, kaalud)
     if rida == "luuletus sai läbi":
         #print("lemma", v6tmes6na)
         v6tmes6nad = lemmatiseeri(v6tmes6na)
@@ -51,22 +54,22 @@ def kirjuta_rida(v6tmes6na, eeltekst, kaalud):
         for v6tmes6na in v6tmes6nad:
             vanas6nad = kysi_vanas6nad(v6tmes6na)
             parameetrid = leia_vanas6nade_parameetrid(v6tmes6na, vanas6nad, False)
-            rida = leia_parim_vanas6na(parameetrid, eeltekst, kaalud)
+            rida = leia_parim_vanas6na(parameetrid, eeltekst , kaalud)
     s6nad = rida.split()
     viimane_s6na = s6nad[-1]
     return rida, viimane_s6na
 
-def tee_luuletus(v6tmes6na, eeltekst=[""], loendur=0, ridu=12, kaalud=[-0.5,-0.2, 0.2, 1, 0.2, -0.5, 0.1]):
+def tee_luuletus(v6tmes6na, kaalud, eeltekst=[""], loendur=0, ridu=12):
     loendur +=1
     if loendur == ridu:
         return eeltekst
     if eeltekst[-1] == "luuletus sai läbi":
         eeltekst = eeltekst.remove("luuletus sai läbi")
         return eeltekst
-    rida, viimane_s6na = kirjuta_rida(v6tmes6na, eeltekst, kaalud)
+    rida, viimane_s6na = kirjuta_rida(v6tmes6na, kaalud, eeltekst)
     eeltekst.append(rida)
     v6tmes6na = viimane_s6na.strip(".")
-    tee_luuletus(v6tmes6na, eeltekst, loendur, ridu)
+    tee_luuletus(v6tmes6na, kaalud, eeltekst, loendur, ridu)
     return eeltekst
 
 #TEHA: fraaside järjekorra ümber tõstimne, mitmeharuline rekursioon (kogu luuletuse skoori arvutamine)
