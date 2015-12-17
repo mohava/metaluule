@@ -6,7 +6,7 @@ def kuva_luuletus(*args):
     luuletus.set("LUULETUST GENEREERITAKSE...")
     root.update()
     s6na = str(võtmes6na.get())
-    kaalud=[asetus.get(),juhuslikkus.get(),rea_pikkus.get(),t2psus.get(),levik.get(),asetus.get(),t2psus.get()]
+    kaalud=[asetus.get(),rea_pikkus.get(),juhuslikkus.get(),t2psus.get(),levik.get(),asetus.get(),t2psus.get()]
     #kui slaidereid ei liiguta, siis nende väärtuseks 0 !!!
     ridadelist = tee_luuletus(s6na, kaalud, eeltekst=[""], loendur=0, ridu=12)
     teksti_kujul = ""
@@ -44,27 +44,32 @@ ttk.Label(mainframe, image = image2).grid(column=3, row=2, sticky=E)
 ttk.Label(mainframe, text="SAATUS").grid(column=1, row=3, sticky=E)
 juhuslikkus = ttk.Scale(mainframe, orient=HORIZONTAL, length=100, from_=0.0, to=0.5)
 juhuslikkus.grid(column=2, row=3)
+juhuslikkus.set(0.2)
 
 ttk.Label(mainframe, text="TÕDE").grid(column=1, row=4, sticky=E)
-rea_pikkus = ttk.Scale(mainframe, orient=HORIZONTAL, length=100, from_=-1, to=0.1)
+rea_pikkus = ttk.Scale(mainframe, orient=HORIZONTAL, length=100, from_=-1, to=-0.1)
 rea_pikkus.grid(column=2, row=4)
+rea_pikkus.set(-0.7)
 
 ttk.Label(mainframe, text="RAUD JA KIVI").grid(column=1, row=5, sticky=E)
 asetus = ttk.Scale(mainframe, orient=HORIZONTAL, length=100, from_=-0.4, to=-0.7)
 asetus.grid(column=2, row=5)
+asetus.set(-0.5)
 
 ttk.Label(mainframe, text="ARMASTUS").grid(column=1, row=6, sticky=E)
 esialgsus = ttk.Scale(mainframe, orient=HORIZONTAL, length=100, from_=0.1, to=0.7)
 esialgsus.grid(column=2, row=6)
+esialgsus.set(0.2)
 
 ttk.Label(mainframe, text="AU").grid(column=1, row=7, sticky=E)
 levik = ttk.Scale(mainframe, orient=HORIZONTAL, length=100, from_=0.1, to=1.0)
 levik.grid(column=2, row=7)
+levik.set(0.5)
 
 ttk.Label(mainframe, text="ÕIGUS").grid(column=1, row=8, sticky=E)
 t2psus = ttk.Scale(mainframe, orient=HORIZONTAL, length=100, from_=0.1, to=0.7)
 t2psus.grid(column=2, row=8)
-
+t2psus.set(0.2)
 
 for child in mainframe.winfo_children(): child.grid_configure(padx=5, pady=5)
 
