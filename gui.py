@@ -15,10 +15,6 @@ def kuva_luuletus(*args):
     luuletus.set(teksti_kujul)
     #except:
     #    print("Viga gui.py-s")
-def kaalud(*args):
-    kaalud = [asetus.get(),juhuslikkus.get(),rea_pikkus.get(),0,0,0]
-    print(kaalud)
-    return kaalud
 root = Tk()
 root.title("Luuletuse generaator")
 a
