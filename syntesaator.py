@@ -14,7 +14,12 @@ def synteseeri(lemma): # teine parameeter vorm, sest siis peab
         r = requests.post('http://www.filosoft.ee/gene_et/gene.cgi', data = {'word': lemma, 'gi': element})
         soup = BeautifulSoup(r.content, "html.parser")
         # lemmad = soup
-        lemmad = soup.body.table.br.get_text()  # töötab kui panna üks vorm gi: sisse, ehk peab tegema eraldi vormide jaoks uuesti läbi
+        try:
+            lemmad = soup.body.table.br.get_text()  # töötab kui panna üks vorm gi: sisse, ehk peab tegema eraldi vormide jaoks uuesti läbi
+        except:
+            print("Tühi/vigane sõne lemmatiseerijas.")
+            return '' # või return lemma
         s6natyved.append(lemmad.strip())
     return s6natyved
-#print(synteseeri('püksid'))
+#print(synteseeri('tegu'))
+#print(synteseeri(12)) # tagastab listi ['12', '12']
