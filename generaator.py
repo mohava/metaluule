@@ -77,6 +77,9 @@ def tee_luuletus(v6tmes6na, kaalud, eeltekst=[""], loendur=0, ridu=12):
 #TEHA: kui ei leia viimast sõna siis lisada rida "viimane sõna, sünonüüm"
 #TEHA: kui ei leia viimast sõna siis lisada rida "viimane sõna, riimuv sõna" kus riimuv sõna on sama lõpu ja silpide arvuga
 #TEHA: kontrollide, ega enne olnud võtmesõnad, ei esine uuesti
+#TEHA: salvestada päringute tulemused anmbaasi: päritud võtmesõnad ja vanasõnad
+#THEA: normaliseerida  iga seti skoorid
+#TEHA: features: riimub? sama pikkus mis eelmisel?
 
 ###MAIN###
 
