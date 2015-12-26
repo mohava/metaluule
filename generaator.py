@@ -28,8 +28,10 @@ def leia_vanas6nade_parameetrid(v6tmes6nad, uued_vanas6nad, originaals6na=True, 
         #print("SÕNA",s6na)
         #print(v6tmes6na,"!!!!", vanas6na)
 
-
-        s6na_asetus = vanas6na.index(v6tmes6na)
+        try:
+            s6na_asetus = vanas6na.index(v6tmes6na)
+        except:
+            s6na_asetus = 0
         v6tmes6na_t2pselt_kujul = (" "+v6tmes6na+" ") in vanas6na
         vanas6na_pikkus = len(vanas6na)
         parameetrid[vanas6na] = [s6na_asetus, vanas6na_pikkus, originaals6na, levik, v6tmes6na_t2pselt_kujul, parafraseeritud, idNumber]
@@ -63,7 +65,7 @@ def leia_parim_vanas6na(parameetrid, kasutatud, kaalud=[-0.5,-0.7, 0.5, 0.2, 0.5
     return ("luuletus sai läbi", kasutatud)
 
 def kirjuta_rida(v6tmes6na, kaalud, kasutatud):
-    print("TÄHELEPANU!! võtmesõna: ",v6tmes6na)
+    #print("TÄHELEPANU!! võtmesõna: ",v6tmes6na)
     vanas6nad = kysi_vanas6nad(v6tmes6na)
     parameetrid = leia_vanas6nade_parameetrid(v6tmes6na, vanas6nad)
     lisaparameetrid = leia_vanas6nade_parameetrid(v6tmes6na, parafraseeriLaused(vanas6nad, v6tmes6na), parafraseeritud=True)
@@ -76,12 +78,16 @@ def kirjuta_rida(v6tmes6na, kaalud, kasutatud):
         lemmad = list(lemmatiseeri(v6tmes6na))
         v6tmes6nad = deepcopy(lemmad)
         for lemma in lemmad:
-            print("syntimisele!!!", lemma)
+            #print("syntimisele!!!", lemma)
             v6tmes6nad += list(synteseeri(lemma))
         v6tmes6nad = set(v6tmes6nad)
-        print("võtmesõnad!!!!",v6tmes6nad)
+        #print("võtmesõnad!!!!",v6tmes6nad)
         v6tmes6nad.add(v6tmes6na)
+
+        vanas6nad = []
         for v6tmes6na in v6tmes6nad:
+            #print(vanas6nad)
+            #print("update OK")
             vanas6nad += kysi_vanas6nad(v6tmes6na)
             
         parameetrid = leia_vanas6nade_parameetrid(v6tmes6nad, vanas6nad, originaals6na=False, parafraseeritud=False)
@@ -122,8 +128,6 @@ def tee_luuletus(v6tmes6na, kaalud=[-0.5,-0.7, 0.5, 0.2, 0.5, -0.5, 0.2, -0.5], 
 
 ###MAIN###
 
-"""
 luuletus = tee_luuletus("kolm", ridu=12)
 for line in luuletus:
     print(line)
-"""
