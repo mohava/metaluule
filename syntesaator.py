@@ -36,8 +36,7 @@ def synteseeri(lemma): # teine parameeter vorm, sest siis peab
     #MIHKLI DEBUG
     s6natyved = puhasta(s6natyved)
 
-    print("synteseeritud",s6natyved)
+    #print("synteseeritud",s6natyved)
     return set(s6natyved)
-print(synteseeri('nurjas'))
 
 #print(synteseeri(12)) # tagastab listi ['12', '12']

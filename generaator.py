@@ -96,7 +96,7 @@ def kirjuta_rida(v6tmes6na, kaalud, kasutatud):
         lisaparameetrid = dict(lisaparameetrid)
         parameetrid.update(lisaparameetrid)
         rida, kasutatud = leia_parim_vanas6na(parameetrid, kasutatud, kaalud)
-        print("RIDA",rida)
+        #print("RIDA",rida)
 
     s6nad = rida.split()
     viimane_s6na = s6nad[-1]
