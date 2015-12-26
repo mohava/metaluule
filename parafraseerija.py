@@ -25,7 +25,6 @@ def vahetaFraasid(lause, v6tmes6nad):
     return lause
 
 def vahetaS6nad(fraas, v6tmes6nad):
-    print(fraas)
     s6nad = fraas.split(" ")
     valitudS6na = "Viga vahetaS6nades"
     for s6na in s6nad:

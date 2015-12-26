@@ -31,6 +31,7 @@ def leia_vanas6nade_parameetrid(v6tmes6nad, uued_vanas6nad, originaals6na=True, 
         try:
             s6na_asetus = vanas6na.index(v6tmes6na)
         except:
+            print("VIGA")
             s6na_asetus = 0
         v6tmes6na_t2pselt_kujul = (" "+v6tmes6na+" ") in vanas6na
         vanas6na_pikkus = len(vanas6na)
@@ -128,7 +129,7 @@ def tee_luuletus(v6tmes6na, kaalud=[-0.5,-0.7, 0.5, 0.2, 0.5, -0.5, 0.2, -0.5], 
 
 ###MAIN###
 """
-luuletus = tee_luuletus("kolm", ridu=12)
+luuletus = tee_luuletus("kolm",kaalud=[-0.5,-0.7, 0, 0.2, 0.5, -0.5, 0.2, -0.5], ridu=12)
 for line in luuletus:
     print(line)
 """
