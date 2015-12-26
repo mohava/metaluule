@@ -4,11 +4,11 @@ from collections import defaultdict
 from random import randint
 from lemmatiseerija import lemmatiseeri
 from lyhendaja import lyhenda
-#from gui import kaalud
+from parafraseerijad import parafraseeriEsimesedFraasid
 
-#parameetrid: sõna asetus, vanasõna pikkus
 def leia_vanas6nade_parameetrid(v6tmes6na, uued_vanas6nad, originaals6na):
     parameetrid=defaultdict(list)
+    uued_vanas6nad = parafraseeriEsimesedFraasid(uued_vanas6nad)
     for idNumber, vanas6na, levik in uued_vanas6nad:
         vanas6na = vanas6na.lower()
         vanas6na = lyhenda(vanas6na)
@@ -24,7 +24,8 @@ def leia_vanas6nade_parameetrid(v6tmes6na, uued_vanas6nad, originaals6na):
 #KAALUD: võtmesõna indeks, vanasõna pikkus, juhuslikkus, leidub sõna esialgsel kujul (mitte lemma), vanas6na levik,
 #       v6tmesõna suhteline asetus, võtmesõna täpsel kujul (mitte sõna osana)
 def leia_parim_vanas6na(parameetrid, eeltekst, kaalud=[-0.5,-0.7, 0.5, 0.2, 0.5, -0.5, 0.2]):
-    print(kaalud)
+    #print(kaalud)
+    print("tik-tok")
     skoorid = []
     for vanas6na in parameetrid:
         s6na_indeks, vanas6na_pikkus, originaals6na, levik, v6tmes6na_t2psel_kujul = parameetrid[vanas6na]
@@ -72,7 +73,8 @@ def tee_luuletus(v6tmes6na, kaalud, eeltekst=[""], loendur=0, ridu=12):
     tee_luuletus(v6tmes6na, kaalud, eeltekst, loendur, ridu)
     return eeltekst
 
-#TEHA: fraaside järjekorra ümber tõstimne, mitmeharuline rekursioon (kogu luuletuse skoori arvutamine)
+#TEHA: fraaside järjekorra ümber tõstimne
+#TEHA: mitmeharuline rekursioon (kogu luuletuse skoori arvutamine)
 #TEHA: parima luuletuse esitamine
 #TEHA: kui ei leia viimast sõna siis lisada rida "viimane sõna, sünonüüm"
 #TEHA: kui ei leia viimast sõna siis lisada rida "viimane sõna, riimuv sõna" kus riimuv sõna on sama lõpu ja silpide arvuga

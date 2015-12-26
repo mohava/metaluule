@@ -2,7 +2,7 @@ __author__ = 'Mihkel'
 
 def lyhenda(vanas6na):
     s6nad = vanas6na.strip().split()
-    kustutuatavad_s6nad = {"kus", "on", "oli", "kes"}
+    kustutuatavad_s6nad = {"on", "oli", "kes"}
     uus_vanas6na = []
     for s6na in s6nad:
         if s6na not in kustutuatavad_s6nad:
