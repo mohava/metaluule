@@ -7,12 +7,12 @@ import re
 def puhasta(s6natyved):
     uuedtyved=[]
     for s6natyvi in s6natyved:
-        print(s6natyvi)
         uued = re.split("\\xa0|####", s6natyvi)
         for uus in uued:
             uuedtyved.append(uus)
-    print(uuedtyved)
     uuedtyved = set(uuedtyved)
+    if uuedtyved == {""}:
+        uuedtyved = {}
     return uuedtyved
 
 def synteseeri(lemma): # teine parameeter vorm, sest siis peab
@@ -36,7 +36,7 @@ def synteseeri(lemma): # teine parameeter vorm, sest siis peab
     #MIHKLI DEBUG
     s6natyved = puhasta(s6natyved)
 
-    print("synteseeritus",s6natyved)
+    print("synteseeritud",s6natyved)
     return set(s6natyved)
 #print(synteseeri('seletama'))
 #print(synteseeri(12)) # tagastab listi ['12', '12']

@@ -25,6 +25,7 @@ def vahetaFraasid(lause, v6tmes6nad):
     return lause
 
 def vahetaS6nad(fraas, v6tmes6nad):
+    print(fraas)
     s6nad = fraas.split(" ")
     valitudS6na = "Viga vahetaS6nades"
     for s6na in s6nad:
@@ -38,6 +39,7 @@ def vahetaS6nad(fraas, v6tmes6nad):
         return fraas
     s6nad = [valitudS6na]+s6nad
     fraas = " ".join(s6nad)
+    #print(fraas)
     return fraas
 
 def parafraseeri(lause, v6tmes6na):
@@ -58,7 +60,5 @@ def parafraseeriLaused(sisendid, v6tmes6na):
         id, lause, levik = sisend
         lause = parafraseeri(lause, v6tmes6na)
         v2ljund.append((id, lause, levik))
+    #print("parafraseeritud", v2ljund)
     return v2ljund
-
-
-print(parafraseeri("Mees läks pütti", {'pütti', 'püti', 'pütt'}))

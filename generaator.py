@@ -9,6 +9,8 @@ from syntesaator import synteseeri
 
 def leia_vanas6nade_parameetrid(v6tmes6nad, uued_vanas6nad, originaals6na=True, parafraseeritud=False):
     parameetrid=defaultdict(list)
+    if type(v6tmes6nad)==str:
+        v6tmes6nad = {v6tmes6nad}
     for idNumber, vanas6na, levik in uued_vanas6nad:
         for s6na in v6tmes6nad:
             if s6na in vanas6na:
@@ -35,7 +37,7 @@ def leia_parim_vanas6na(parameetrid, kasutatud, kaalud=[-0.5,-0.7, 0.5, 0.2, 0.5
         s6na_indeks, vanas6na_pikkus, originaals6na, levik, v6tmes6na_t2psel_kujul, parfraseeritud, idNumber = parameetrid[vanas6na]
         skoor = s6na_indeks*kaalud[0] + vanas6na_pikkus*kaalud[1] + randint(0,100)*kaalud[2] \
                     + originaals6na*100*kaalud[3] + levik*kaalud[4] + s6na_indeks/vanas6na_pikkus*100*kaalud[5] \
-                    + v6tmes6na_t2psel_kujul*100*kaalud[6] + parfraseeritud*kaalud[7]
+                    + v6tmes6na_t2psel_kujul*100*kaalud[6] + parfraseeritud*kaalud[7]*100
         skoorid.append((skoor, vanas6na, idNumber))
     skoorid = sorted(skoorid, reverse=1)
 
@@ -61,11 +63,13 @@ def kirjuta_rida(v6tmes6na, kaalud, kasutatud):
 
     if rida == "luuletus sai läbi":
         lemmad = list(lemmatiseeri(v6tmes6na))
-        v6tmes6nad = lemmad.copy()
+        v6tmes6nad = lemmad
         for lemma in lemmad:
+            print("syntimisele", lemma)
             v6tmes6nad += list(synteseeri(lemma))
         v6tmes6nad = set(v6tmes6nad)
-        print(v6tmes6nad)
+        print("võtmesõnad",v6tmes6nad)
+        v6tmes6nad.add(v6tmes6na)
         for v6tmes6na in v6tmes6nad:
             vanas6nad += kysi_vanas6nad(v6tmes6na)
             
@@ -75,6 +79,7 @@ def kirjuta_rida(v6tmes6na, kaalud, kasutatud):
         lisaparameetrid = dict(lisaparameetrid)
         parameetrid.update(lisaparameetrid)
         rida, kasutatud = leia_parim_vanas6na(parameetrid, kasutatud, kaalud)
+        print("rida",rida)
 
     s6nad = rida.split()
     viimane_s6na = s6nad[-1]

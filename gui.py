@@ -7,7 +7,7 @@ def kuva_luuletus(*args):
     root.update()
     s6na = str(võtmes6na.get())
     kaalud=[asetus.get(),rea_pikkus.get(),juhuslikkus.get(),t2psus.get(),levik.get(),asetus2.get(),t2psus.get(),parafraseeri.get()]
-    ridadelist = tee_luuletus(s6na, kaalud)
+    ridadelist = tee_luuletus(s6na, kaalud, tekst=[" "])
     teksti_kujul = ""
     for element in ridadelist:
         teksti_kujul += element + "\n"
