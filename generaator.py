@@ -127,7 +127,8 @@ def tee_luuletus(v6tmes6na, kaalud=[-0.5,-0.7, 0.5, 0.2, 0.5, -0.5, 0.2, -0.5], 
 #TEHA: internetiühendus GUIsse, numbrite äre kadumine TÖÖS
 
 ###MAIN###
-
+"""
 luuletus = tee_luuletus("kolm", ridu=12)
 for line in luuletus:
     print(line)
+"""
