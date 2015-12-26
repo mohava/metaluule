@@ -6,18 +6,29 @@ from lemmatiseerija import lemmatiseeri
 from lyhendaja import lyhenda
 from parafraseerija import parafraseeriLaused
 from syntesaator import synteseeri
+from copy import deepcopy
 
 def leia_vanas6nade_parameetrid(v6tmes6nad, uued_vanas6nad, originaals6na=True, parafraseeritud=False):
     parameetrid=defaultdict(list)
     if type(v6tmes6nad)==str:
         v6tmes6nad = {v6tmes6nad}
+
     for idNumber, vanas6na, levik in uued_vanas6nad:
+
+        v6tmes6na = list(v6tmes6nad)[0]
         for s6na in v6tmes6nad:
             if s6na in vanas6na:
                 v6tmes6na = s6na
+
         vanas6na = vanas6na.lower()
         vanas6na = lyhenda(vanas6na)
-        print(v6tmes6na,"!!!!", vanas6na)
+
+        ##BUG
+        #print("võtmed",v6tmes6nad)
+        #print("SÕNA",s6na)
+        #print(v6tmes6na,"!!!!", vanas6na)
+
+
         s6na_asetus = vanas6na.index(v6tmes6na)
         v6tmes6na_t2pselt_kujul = (" "+v6tmes6na+" ") in vanas6na
         vanas6na_pikkus = len(vanas6na)
@@ -52,7 +63,7 @@ def leia_parim_vanas6na(parameetrid, kasutatud, kaalud=[-0.5,-0.7, 0.5, 0.2, 0.5
     return ("luuletus sai läbi", kasutatud)
 
 def kirjuta_rida(v6tmes6na, kaalud, kasutatud):
-    #print("võtmesõna: ",v6tmes6na)
+    print("TÄHELEPANU!! võtmesõna: ",v6tmes6na)
     vanas6nad = kysi_vanas6nad(v6tmes6na)
     parameetrid = leia_vanas6nade_parameetrid(v6tmes6na, vanas6nad)
     lisaparameetrid = leia_vanas6nade_parameetrid(v6tmes6na, parafraseeriLaused(vanas6nad, v6tmes6na), parafraseeritud=True)
@@ -63,12 +74,12 @@ def kirjuta_rida(v6tmes6na, kaalud, kasutatud):
 
     if rida == "luuletus sai läbi":
         lemmad = list(lemmatiseeri(v6tmes6na))
-        v6tmes6nad = lemmad
+        v6tmes6nad = deepcopy(lemmad)
         for lemma in lemmad:
-            print("syntimisele", lemma)
+            print("syntimisele!!!", lemma)
             v6tmes6nad += list(synteseeri(lemma))
         v6tmes6nad = set(v6tmes6nad)
-        print("võtmesõnad",v6tmes6nad)
+        print("võtmesõnad!!!!",v6tmes6nad)
         v6tmes6nad.add(v6tmes6na)
         for v6tmes6na in v6tmes6nad:
             vanas6nad += kysi_vanas6nad(v6tmes6na)
@@ -79,7 +90,7 @@ def kirjuta_rida(v6tmes6na, kaalud, kasutatud):
         lisaparameetrid = dict(lisaparameetrid)
         parameetrid.update(lisaparameetrid)
         rida, kasutatud = leia_parim_vanas6na(parameetrid, kasutatud, kaalud)
-        print("rida",rida)
+        print("RIDA",rida)
 
     s6nad = rida.split()
     viimane_s6na = s6nad[-1]
@@ -112,7 +123,7 @@ def tee_luuletus(v6tmes6na, kaalud=[-0.5,-0.7, 0.5, 0.2, 0.5, -0.5, 0.2, -0.5], 
 ###MAIN###
 
 """
-luuletus = tee_luuletus("mees", ridu=20)
+luuletus = tee_luuletus("kolm", ridu=12)
 for line in luuletus:
     print(line)
 """

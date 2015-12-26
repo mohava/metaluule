@@ -38,5 +38,6 @@ def synteseeri(lemma): # teine parameeter vorm, sest siis peab
 
     print("synteseeritud",s6natyved)
     return set(s6natyved)
-#print(synteseeri('seletama'))
+print(synteseeri('nurjas'))
+
 #print(synteseeri(12)) # tagastab listi ['12', '12']
