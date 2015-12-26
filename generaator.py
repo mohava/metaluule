@@ -5,6 +5,7 @@ from random import randint
 from lemmatiseerija import lemmatiseeri
 from lyhendaja import lyhenda
 from parafraseerija import parafraseeriLaused
+from syntesaator import synteseeri
 
 def leia_vanas6nade_parameetrid(v6tmes6na, uued_vanas6nad, originaals6na):
     parameetrid=defaultdict(list)
@@ -52,12 +53,18 @@ def kirjuta_rida(v6tmes6na, kaalud, kasutatud):
     rida, kasutatud = leia_parim_vanas6na(parameetrid, kasutatud, kaalud)
     if rida == "luuletus sai läbi":
         #print("lemma", v6tmes6na)
-        v6tmes6nad = lemmatiseeri(v6tmes6na)
+        lemmad = list(lemmatiseeri(v6tmes6na))
+        v6tmes6nad = lemmad.copy()
+        for lemma in lemmad:
+            v6tmes6nad += list(synteseeri(lemma))
+        v6tmes6nad = set(v6tmes6nad)
+        print(v6tmes6nad)
         #print("lemma2", v6tmes6na)
         for v6tmes6na in v6tmes6nad:
-            vanas6nad = kysi_vanas6nad(v6tmes6na)
+            vanas6nad += kysi_vanas6nad(v6tmes6na)
             parameetrid = leia_vanas6nade_parameetrid(v6tmes6na, vanas6nad, False)
             rida, kasutatud = leia_parim_vanas6na(parameetrid, kasutatud, kaalud)
+
     s6nad = rida.split()
     viimane_s6na = s6nad[-1]
     return rida, viimane_s6na, kasutatud
@@ -75,7 +82,7 @@ def tee_luuletus(v6tmes6na, kaalud=[-0.5,-0.7, 0.5, 0.2, 0.5, -0.5, 0.2], tekst=
     tee_luuletus(v6tmes6na, kaalud, tekst, loendur, ridu, kasutatud)
     return tekst
 
-#TEHA: fraaside järjekorra ümber tõstimne
+#TEHA: fraaside järjekorra ümber tõstimne TEHTUD
 #TEHA: mitmeharuline rekursioon (kogu luuletuse skoori arvutamine)
 #TEHA: parima luuletuse esitamine
 #TEHA: kui ei leia viimast sõna siis lisada rida "viimane sõna, sünonüüm"
@@ -84,11 +91,12 @@ def tee_luuletus(v6tmes6na, kaalud=[-0.5,-0.7, 0.5, 0.2, 0.5, -0.5, 0.2], tekst=
 #TEHA: salvestada päringute tulemused anmbaasi: päritud võtmesõnad ja vanasõnad
 #THEA: normaliseerida  iga seti skoorid
 #TEHA: features: riimub? sama pikkus mis eelmisel?
-#TEHA: internetiühendus GUIsse, numbrite äre kadumine
+#TEHA: internetiühendus GUIsse, numbrite äre kadumine TÖÖS
 
 ###MAIN###
 
-
-luuletus = tee_luuletus("mees", ridu=10)
+"""
+luuletus = tee_luuletus("mees", ridu=20)
 for line in luuletus:
     print(line)
+"""

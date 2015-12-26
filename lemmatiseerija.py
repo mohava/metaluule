@@ -13,6 +13,7 @@ def lemmatiseeri(sona):
     for element in tyved:
         if element != "" and element != "Copyright © 2013":
             sõnatyved.add(element)
+    print("lemma",sõnatyved)
     return sõnatyved #vahel on s6navormil mitu sobivat tüve kasin: kasima ja kasin
 
 #print(lemmatiseeri("õe"))

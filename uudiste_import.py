@@ -23,4 +23,5 @@ def improdi_uudised():
     #return pealkirjad # [{portaal, pealkiri, kommentaaride arv).....]
 
 
-# print(improdi_uudised())
+print(improdi_uudised())
+

@@ -20,6 +20,7 @@ def synteseeri(lemma): # teine parameeter vorm, sest siis peab
             print("Tühi/vigane sõne lemmatiseerijas.")
             return '' # või return lemma
         s6natyved.append(lemmad.strip())
-    return s6natyved
+    print("synteseeritus",s6natyved)
+    return set(s6natyved)
 #print(synteseeri('tegu'))
 #print(synteseeri(12)) # tagastab listi ['12', '12']
