@@ -6,7 +6,7 @@ def kuva_luuletus(*args):
     luuletus.set("LUULETUST GENEREERITAKSE...")
     root.update()
     s6na = str(võtmes6na.get())
-    kaalud=[asetus.get(),rea_pikkus.get(),juhuslikkus.get(),t2psus.get(),levik.get(),asetus2.get(),t2psus.get()]
+    kaalud=[asetus.get(),rea_pikkus.get(),juhuslikkus.get(),t2psus.get(),levik.get(),asetus2.get(),t2psus.get(),parafraseeri.get()]
     ridadelist = tee_luuletus(s6na, kaalud)
     teksti_kujul = ""
     for element in ridadelist:
@@ -74,6 +74,11 @@ ttk.Label(mainframe, text="ÕIGUS").grid(column=1, row=9, sticky=E)
 t2psus = ttk.Scale(mainframe, orient=HORIZONTAL, length=100, from_=0.1, to=0.7)
 t2psus.grid(column=2, row=9)
 t2psus.set(0.2)
+
+ttk.Label(mainframe, text="TALV").grid(column=1, row=10, sticky=E)
+parafraseeri = ttk.Scale(mainframe, orient=HORIZONTAL, length=100, from_=-1, to=0.5)
+parafraseeri.grid(column=2, row=10)
+parafraseeri.set(-0.2)
 
 for child in mainframe.winfo_children(): child.grid_configure(padx=5, pady=5)
 

@@ -7,16 +7,19 @@ from lyhendaja import lyhenda
 from parafraseerija import parafraseeriLaused
 from syntesaator import synteseeri
 
-def leia_vanas6nade_parameetrid(v6tmes6na, uued_vanas6nad, originaals6na):
+def leia_vanas6nade_parameetrid(v6tmes6nad, uued_vanas6nad, originaals6na=True, parafraseeritud=False):
     parameetrid=defaultdict(list)
-    uued_vanas6nad = uued_vanas6nad + parafraseeriLaused(uued_vanas6nad, v6tmes6na)
     for idNumber, vanas6na, levik in uued_vanas6nad:
+        for s6na in v6tmes6nad:
+            if s6na in vanas6na:
+                v6tmes6na = s6na
         vanas6na = vanas6na.lower()
         vanas6na = lyhenda(vanas6na)
+        print(v6tmes6na,"!!!!", vanas6na)
         s6na_asetus = vanas6na.index(v6tmes6na)
         v6tmes6na_t2pselt_kujul = (" "+v6tmes6na+" ") in vanas6na
         vanas6na_pikkus = len(vanas6na)
-        parameetrid[vanas6na] = [s6na_asetus, vanas6na_pikkus, originaals6na, levik, v6tmes6na_t2pselt_kujul, idNumber]
+        parameetrid[vanas6na] = [s6na_asetus, vanas6na_pikkus, originaals6na, levik, v6tmes6na_t2pselt_kujul, parafraseeritud, idNumber]
     return parameetrid
 
 #kood on kirjutatud pidades silmas, et siina vahel saaks olla kaalude optimeerimise funktsioon
@@ -24,15 +27,15 @@ def leia_vanas6nade_parameetrid(v6tmes6na, uued_vanas6nad, originaals6na):
 
 #KAALUD: võtmesõna indeks, vanasõna pikkus, juhuslikkus, leidub sõna esialgsel kujul (mitte lemma), vanas6na levik,
 #       v6tmesõna suhteline asetus, võtmesõna täpsel kujul (mitte sõna osana)
-def leia_parim_vanas6na(parameetrid, kasutatud, kaalud=[-0.5,-0.7, 0.5, 0.2, 0.5, -0.5, 0.2]):
+def leia_parim_vanas6na(parameetrid, kasutatud, kaalud=[-0.5,-0.7, 0.5, 0.2, 0.5, -0.5, 0.2, -0.5]):
     #print(kaalud)
     print("tik-tok")
     skoorid = []
     for vanas6na in parameetrid:
-        s6na_indeks, vanas6na_pikkus, originaals6na, levik, v6tmes6na_t2psel_kujul, idNumber = parameetrid[vanas6na]
+        s6na_indeks, vanas6na_pikkus, originaals6na, levik, v6tmes6na_t2psel_kujul, parfraseeritud, idNumber = parameetrid[vanas6na]
         skoor = s6na_indeks*kaalud[0] + vanas6na_pikkus*kaalud[1] + randint(0,100)*kaalud[2] \
                     + originaals6na*100*kaalud[3] + levik*kaalud[4] + s6na_indeks/vanas6na_pikkus*100*kaalud[5] \
-                    + v6tmes6na_t2psel_kujul*100*kaalud[6]
+                    + v6tmes6na_t2psel_kujul*100*kaalud[6] + parfraseeritud*kaalud[7]
         skoorid.append((skoor, vanas6na, idNumber))
     skoorid = sorted(skoorid, reverse=1)
 
@@ -49,27 +52,35 @@ def leia_parim_vanas6na(parameetrid, kasutatud, kaalud=[-0.5,-0.7, 0.5, 0.2, 0.5
 def kirjuta_rida(v6tmes6na, kaalud, kasutatud):
     #print("võtmesõna: ",v6tmes6na)
     vanas6nad = kysi_vanas6nad(v6tmes6na)
-    parameetrid = leia_vanas6nade_parameetrid(v6tmes6na, vanas6nad, True)
+    parameetrid = leia_vanas6nade_parameetrid(v6tmes6na, vanas6nad)
+    lisaparameetrid = leia_vanas6nade_parameetrid(v6tmes6na, parafraseeriLaused(vanas6nad, v6tmes6na), parafraseeritud=True)
+    lisaparameetrid = dict(lisaparameetrid)
+    parameetrid.update(lisaparameetrid)
     rida, kasutatud = leia_parim_vanas6na(parameetrid, kasutatud, kaalud)
+
+
     if rida == "luuletus sai läbi":
-        #print("lemma", v6tmes6na)
         lemmad = list(lemmatiseeri(v6tmes6na))
         v6tmes6nad = lemmad.copy()
         for lemma in lemmad:
             v6tmes6nad += list(synteseeri(lemma))
         v6tmes6nad = set(v6tmes6nad)
         print(v6tmes6nad)
-        #print("lemma2", v6tmes6na)
         for v6tmes6na in v6tmes6nad:
             vanas6nad += kysi_vanas6nad(v6tmes6na)
-            parameetrid = leia_vanas6nade_parameetrid(v6tmes6na, vanas6nad, False)
-            rida, kasutatud = leia_parim_vanas6na(parameetrid, kasutatud, kaalud)
+            
+        parameetrid = leia_vanas6nade_parameetrid(v6tmes6nad, vanas6nad, originaals6na=False, parafraseeritud=False)
+        parameetrid = dict(parameetrid)
+        lisaparameetrid = leia_vanas6nade_parameetrid(v6tmes6nad, parafraseeriLaused(vanas6nad, v6tmes6nad), originaals6na=False, parafraseeritud=True)
+        lisaparameetrid = dict(lisaparameetrid)
+        parameetrid.update(lisaparameetrid)
+        rida, kasutatud = leia_parim_vanas6na(parameetrid, kasutatud, kaalud)
 
     s6nad = rida.split()
     viimane_s6na = s6nad[-1]
     return rida, viimane_s6na, kasutatud
 
-def tee_luuletus(v6tmes6na, kaalud=[-0.5,-0.7, 0.5, 0.2, 0.5, -0.5, 0.2], tekst=[""], loendur=0, ridu=12, kasutatud=[]):
+def tee_luuletus(v6tmes6na, kaalud=[-0.5,-0.7, 0.5, 0.2, 0.5, -0.5, 0.2, -0.5], tekst=[""], loendur=0, ridu=12, kasutatud=[]):
     loendur +=1
     if loendur == ridu:
         return tekst
