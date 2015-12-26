@@ -1,6 +1,7 @@
 from tkinter import *
 from tkinter import ttk
 from generaator import tee_luuletus
+
 def kuva_luuletus(*args):
     #try:
     luuletus.set("LUULETUST GENEREERITAKSE...")
