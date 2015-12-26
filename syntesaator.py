@@ -1,15 +1,19 @@
 import requests
 from bs4 import BeautifulSoup
+import re
 # http://www.filosoft.ee/gene_et/
 
 #Mihkli debug
 def puhasta(s6natyved):
+    uuedtyved=[]
     for s6natyvi in s6natyved:
-        if "\\xa0" in s6natyvi:
-            uued = s6natyvi.split("\\xa0")
-            s6natyved.remove(s6natyvi)
-            s6natyved.append(uued)
-    return s6natyved
+        print(s6natyvi)
+        uued = re.split("\\xa0|####", s6natyvi)
+        for uus in uued:
+            uuedtyved.append(uus)
+    print(uuedtyved)
+    uuedtyved = set(uuedtyved)
+    return uuedtyved
 
 def synteseeri(lemma): # teine parameeter vorm, sest siis peab
 # läbi käima ainult nii palju kui vaja, mitte kõik
@@ -34,5 +38,5 @@ def synteseeri(lemma): # teine parameeter vorm, sest siis peab
 
     print("synteseeritus",s6natyved)
     return set(s6natyved)
-#print(synteseeri('tegu'))
+#print(synteseeri('seletama'))
 #print(synteseeri(12)) # tagastab listi ['12', '12']

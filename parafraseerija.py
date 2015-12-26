@@ -21,6 +21,7 @@ def vahetaFraasid(lause, v6tmes6nad):
         print("VIGA vhaetafraasis")
         print(fraasid)
         print(v6tmes6nad)
+        print(v6tmes6na)
         print(v6tmefraas)
     fraasid = [v6tmefraas]+fraasid
     lause = ", ".join(fraasid)
