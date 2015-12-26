@@ -2,6 +2,14 @@ import requests
 from bs4 import BeautifulSoup
 # http://www.filosoft.ee/gene_et/
 
+#Mihkli debug
+def puhasta(s6natyved):
+    for s6natyvi in s6natyved:
+        if "\\xa0" in s6natyvi:
+            uued = s6natyvi.split("\\xa0")
+            s6natyved.remove(s6natyvi)
+            s6natyved.append(uued)
+    return s6natyved
 
 def synteseeri(lemma): # teine parameeter vorm, sest siis peab
 # läbi käima ainult nii palju kui vaja, mitte kõik
@@ -20,6 +28,10 @@ def synteseeri(lemma): # teine parameeter vorm, sest siis peab
             print("Tühi/vigane sõne lemmatiseerijas.")
             return '' # või return lemma
         s6natyved.append(lemmad.strip())
+
+    #MIHKLI DEBUG
+    s6natyved = puhasta(s6natyved)
+
     print("synteseeritus",s6natyved)
     return set(s6natyved)
 #print(synteseeri('tegu'))
