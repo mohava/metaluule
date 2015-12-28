@@ -111,6 +111,7 @@ def tee_luuletus(v6tmes6na, kaalud=[-0.5,-0.7, 0.5, 0.2, 0.5, -0.5, 0.2, -0.5], 
         eeltekst = tekst.remove("luuletus sai läbi")
         return eeltekst
     rida, viimane_s6na, kasutatud = kirjuta_rida(v6tmes6na, kaalud, kasutatud)
+    print(rida)
     tekst.append(rida)
     v6tmes6na = viimane_s6na.strip(".")
     tee_luuletus(v6tmes6na, kaalud, tekst, loendur, ridu, kasutatud)
@@ -128,8 +129,15 @@ def tee_luuletus(v6tmes6na, kaalud=[-0.5,-0.7, 0.5, 0.2, 0.5, -0.5, 0.2, -0.5], 
 #TEHA: internetiühendus GUIsse, numbrite äre kadumine TÖÖS
 
 ###MAIN###
+
 """
-luuletus = tee_luuletus("kolm",kaalud=[-0.5,-0.7, 0, 0.2, 0.5, -0.5, 0.2, -0.5], ridu=12)
+luuletus = tee_luuletus("kolm",kaalud=[-0.5,-0.7, 0, 0.2, 0.5, -0.5, 0.2, -0.5], tekst=[""], loendur=0, ridu=12, kasutatud=[])
+for line in luuletus:
+    print(line)
+
+luuletus = []
+
+luuletus = tee_luuletus("kolm",kaalud=[-0.5,-0.7, 0, 0.2, 0.5, -0.5, 0.2, -0.5], tekst=[""], loendur=0, ridu=12, kasutatud=[])
 for line in luuletus:
     print(line)
 """
