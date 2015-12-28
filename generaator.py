@@ -134,10 +134,4 @@ def tee_luuletus(v6tmes6na, kaalud=[-0.5,-0.7, 0.5, 0.2, 0.5, -0.5, 0.2, -0.5], 
 luuletus = tee_luuletus("kolm",kaalud=[-0.5,-0.7, 0, 0.2, 0.5, -0.5, 0.2, -0.5], tekst=[""], loendur=0, ridu=12, kasutatud=[])
 for line in luuletus:
     print(line)
-
-luuletus = []
-
-luuletus = tee_luuletus("kolm",kaalud=[-0.5,-0.7, 0, 0.2, 0.5, -0.5, 0.2, -0.5], tekst=[""], loendur=0, ridu=12, kasutatud=[])
-for line in luuletus:
-    print(line)
 """
