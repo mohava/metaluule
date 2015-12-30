@@ -104,6 +104,7 @@ def kirjuta_rida(v6tmes6na, kaalud, kasutatud):
     return rida, viimane_s6na, kasutatud
 
 def tee_luuletus(v6tmes6na, kaalud=[-0.5,-0.7, 0.5, 0.2, 0.5, -0.5, 0.2, -0.5], tekst=[""], loendur=0, ridu=12, kasutatud=[]):
+    v6tmes6na = v6tmes6na.lower()
     loendur +=1
     if loendur == ridu:
         return tekst
@@ -117,18 +118,17 @@ def tee_luuletus(v6tmes6na, kaalud=[-0.5,-0.7, 0.5, 0.2, 0.5, -0.5, 0.2, -0.5], 
     tee_luuletus(v6tmes6na, kaalud, tekst, loendur, ridu, kasutatud)
     return tekst
 
-#TEHA: fraaside järjekorra ümber tõstimne TEHTUD
-#TEHA: mitmeharuline rekursioon (kogu luuletuse skoori arvutamine)
-#TEHA: parima luuletuse esitamine
-#TEHA: kui ei leia viimast sõna siis lisada rida "viimane sõna, sünonüüm"
-#TEHA: kui ei leia viimast sõna siis lisada rida "viimane sõna, riimuv sõna" kus riimuv sõna on sama lõpu ja silpide arvuga
-#TEHA: kontrollide, ega enne olnud võtmesõnad, ei esine uuesti
-#TEHA: salvestada päringute tulemused anmbaasi: päritud võtmesõnad ja vanasõnad
-#THEA: normaliseerida  iga seti skoorid
-#TEHA: features: riimub? sama pikkus mis eelmisel?
-#TEHA: internetiühendus GUIsse, numbrite äre kadumine TÖÖS
-#TEHA: feat: kahest fraasist koosnev
-#TEHA: parafraseerija: ei kõige esimeseks
+#TEHA: mitmeharuline rekursioon (kogu luuletuse skoori arvutamine), parima luuletuse esitamine  8/10= 0.8
+#TEHA: kui ei leia viimast sõna siis lisada rida "viimane sõna, sünonüüm"  4/5
+#TEHA: kui ei leia viimast sõna siis lisada rida "viimane sõna, riimuv sõna" kus riimuv sõna on sama lõpu ja silpide arvuga 4/5
+#TEHA: salvestada päringute tulemused anmbaasi: päritud võtmesõnad ja vanasõnad 2/10
+#THEA: normaliseerida  iga seti skoorid 9/8
+#TEHA: features: riimub? sama pikkus mis eelmisel? 4/8
+#TEHA: feat: kahest fraasist koosnev 9/6
+#TEHA: parafraseerija: ei kõige esimeseks 5/5
+#TEHA: kaks eraldi parafraseerimsit 9/10
+#TEHA: GUIsse ridade arv 6/3
+#TEHA: GUIsse poliitika 6/4
 
 ###MAIN###
 

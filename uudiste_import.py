@@ -23,5 +23,7 @@ def improdi_uudised():
     #return pealkirjad # [{portaal, pealkiri, kommentaaride arv).....]
 
 
-print(improdi_uudised())
+uudised = improdi_uudised()
+for uudis in uudised:
+    print(uudis)
 

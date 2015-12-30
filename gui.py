@@ -2,12 +2,15 @@ from tkinter import *
 from tkinter import ttk
 from generaator import tee_luuletus
 
+
 def kuva_luuletus(*args):
     #try:
     luuletus.set("LUULETUST GENEREERITAKSE...")
     root.update()
     s6na = str(võtmes6na.get())
-    kaalud=[asetus.get(),rea_pikkus.get(),juhuslikkus.get(),t2psus.get(),levik.get(),asetus2.get(),t2psus.get(),parafraseeri.get()]
+    #KAALUD: võtmesõna indeks, vanasõna pikkus, juhuslikkus, leidub sõna esialgsel kujul (mitte lemma), vanas6na levik,
+#       v6tmesõna suhteline asetus, võtmesõna täpsel kujul (mitte sõna osana), parafraseeritud
+    kaalud=[asetus.get(),rea_pikkus.get(),juhuslikkus.get(),esialgsus.get(),levik.get(),asetus2.get(),t2psus.get(),parafraseeri.get()]
     ridadelist = tee_luuletus(s6na, kaalud, tekst=[""], loendur=0, ridu=12, kasutatud=[])
     teksti_kujul = ""
     for element in ridadelist:
