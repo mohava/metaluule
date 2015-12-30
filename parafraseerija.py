@@ -19,6 +19,8 @@ def vahetaFraasid(lause, v6tmes6nad):
         fraasid.remove(v6tmefraas)
     else:
         print("jätsin parafraseerimata")
+        print("Fraasid:", fraasid)
+        print("Võtmefraas: ", v6tmefraas)
         return lause
     fraasid = [v6tmefraas]+fraasid
     lause = ", ".join(fraasid)
@@ -35,6 +37,9 @@ def vahetaS6nad(fraas, v6tmes6nad):
         s6nad.remove(valitudS6na)
     else:
         print("jätsin parafraseerimata")
+        print("Parafraseerimine: Fraas:", fraas)
+        print("Parafraseerimine: Valitud sõna:", valitudS6na)
+        print("Parafraseermine: võtmesõna:", v6tmes6na)
         return fraas
     s6nad = [valitudS6na]+s6nad
     fraas = " ".join(s6nad)

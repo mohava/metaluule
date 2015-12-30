@@ -23,16 +23,16 @@ def leia_vanas6nade_parameetrid(v6tmes6nad, uued_vanas6nad, originaals6na=True, 
         vanas6na = vanas6na.lower()
         vanas6na = lyhenda(vanas6na)
 
-        ##BUG
+        ##BUG##
         #print("võtmed",v6tmes6nad)
         #print("SÕNA",s6na)
         #print(v6tmes6na,"!!!!", vanas6na)
-
         try:
             s6na_asetus = vanas6na.index(v6tmes6na)
         except:
             print("VIGA")
             s6na_asetus = 0
+
         v6tmes6na_t2pselt_kujul = (" "+v6tmes6na+" ") in vanas6na
         vanas6na_pikkus = len(vanas6na)
         parameetrid[vanas6na] = [s6na_asetus, vanas6na_pikkus, originaals6na, levik, v6tmes6na_t2pselt_kujul, parafraseeritud, idNumber]
@@ -42,7 +42,7 @@ def leia_vanas6nade_parameetrid(v6tmes6nad, uued_vanas6nad, originaals6na=True, 
 #kaalud = kaalud()
 
 #KAALUD: võtmesõna indeks, vanasõna pikkus, juhuslikkus, leidub sõna esialgsel kujul (mitte lemma), vanas6na levik,
-#       v6tmesõna suhteline asetus, võtmesõna täpsel kujul (mitte sõna osana)
+#       v6tmesõna suhteline asetus, võtmesõna täpsel kujul (mitte sõna osana), parafraseeritud
 def leia_parim_vanas6na(parameetrid, kasutatud, kaalud=[-0.5,-0.7, 0.5, 0.2, 0.5, -0.5, 0.2, -0.5]):
     #print(kaalud)
     print("tik-tok")
@@ -127,6 +127,8 @@ def tee_luuletus(v6tmes6na, kaalud=[-0.5,-0.7, 0.5, 0.2, 0.5, -0.5, 0.2, -0.5], 
 #THEA: normaliseerida  iga seti skoorid
 #TEHA: features: riimub? sama pikkus mis eelmisel?
 #TEHA: internetiühendus GUIsse, numbrite äre kadumine TÖÖS
+#TEHA: feat: kahest fraasist koosnev
+#TEHA: parafraseerija: ei kõige esimeseks
 
 ###MAIN###
 
