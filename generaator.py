@@ -129,6 +129,7 @@ def tee_luuletus(v6tmes6na, kaalud=[-0.5,-0.7, 0.5, 0.2, 0.5, -0.5, 0.2, -0.5], 
 #TEHA: kaks eraldi parafraseerimsit 9/10
 #TEHA: GUIsse ridade arv 6/3
 #TEHA: GUIsse poliitika 6/4
+#TEHA: pikad read paremini vormistada
 
 ###MAIN###
 
