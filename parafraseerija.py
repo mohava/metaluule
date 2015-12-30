@@ -1,5 +1,4 @@
-__author__ = 'ATM'
-#in: list of douples with 3 els; ...... , ..... ,  ...key..., ....
+__author__ = 'Mihkel Kohava'
 def teeFraasideks(lause):
     fraasid = lause.split(", ")
     return fraasid

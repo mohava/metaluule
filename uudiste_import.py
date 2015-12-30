@@ -1,3 +1,5 @@
+__author__ = 'Kaspar K2ngsepp, Mihkel Kohava'
+
 import requests
 from bs4 import BeautifulSoup
 #DELFI, ERR, PM, ÄRILEHT, NAISTEKAS??, ELU 24...
@@ -8,6 +10,7 @@ def improdi_uudised():
     # #uudised = soup.ul.li.get_text().encode("utf-8")
     r = requests.get('http://www.delfi.ee/archive/viimased/')
     soup = BeautifulSoup(r.content, "html.parser")
+    print(soup)
     #uudised = soup.body.ol.li.div.a.get_text() #saab ainult ühe uudise
     uudised = soup.body.ol.get_text().strip()
     list = uudised.split('\n')
@@ -23,7 +26,16 @@ def improdi_uudised():
     #return pealkirjad # [{portaal, pealkiri, kommentaaride arv).....]
 
 
+def puhasta(uudised):
+    puhastatud = set()
+    for uudis in uudised:
+        if len(uudis.split(" ")) < 3:
+            pass
+        else:
+            puhastatud.add(uudis)
+    return puhastatud
+
 uudised = improdi_uudised()
-for uudis in uudised:
+for uudis in puhasta(uudised):
     print(uudis)
 

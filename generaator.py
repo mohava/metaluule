@@ -35,23 +35,29 @@ def leia_vanas6nade_parameetrid(v6tmes6nad, uued_vanas6nad, originaals6na=True, 
 
         v6tmes6na_t2pselt_kujul = (" "+v6tmes6na+" ") in vanas6na
         vanas6na_pikkus = len(vanas6na)
-        parameetrid[vanas6na] = [s6na_asetus, vanas6na_pikkus, originaals6na, levik, v6tmes6na_t2pselt_kujul, parafraseeritud, idNumber]
+        koosneb_kahest_fraasist = (len(vanas6na.split(", ")) == 2)
+
+        parameetrid[vanas6na] = [s6na_asetus, vanas6na_pikkus, originaals6na, levik, v6tmes6na_t2pselt_kujul, parafraseeritud, koosneb_kahest_fraasist, idNumber]
     return parameetrid
 
 #kood on kirjutatud pidades silmas, et siina vahel saaks olla kaalude optimeerimise funktsioon
 #kaalud = kaalud()
 
 #KAALUD: võtmesõna indeks, vanasõna pikkus, juhuslikkus, leidub sõna esialgsel kujul (mitte lemma), vanas6na levik,
-#       v6tmesõna suhteline asetus, võtmesõna täpsel kujul (mitte sõna osana), parafraseeritud
-def leia_parim_vanas6na(parameetrid, kasutatud, kaalud=[-0.5,-0.7, 0.5, 0.2, 0.5, -0.5, 0.2, -0.5]):
+#       v6tmesõna suhteline asetus, võtmesõna täpsel kujul (mitte sõna osana), parafraseeritud, koosneb kahest fraasist
+def leia_parim_vanas6na(parameetrid, kasutatud, kaalud=[-0.5,-0.7, 0.5, 0.2, 0.5, -0.5, 0.2, -0.5, 0.5]):
     #print(kaalud)
     print("tik-tok")
     skoorid = []
     for vanas6na in parameetrid:
-        s6na_indeks, vanas6na_pikkus, originaals6na, levik, v6tmes6na_t2psel_kujul, parfraseeritud, idNumber = parameetrid[vanas6na]
+        s6na_indeks, vanas6na_pikkus, originaals6na, levik, v6tmes6na_t2psel_kujul, parfraseeritud, \
+                koosneb_kahest_fraasist, idNumber = parameetrid[vanas6na]
+
         skoor = s6na_indeks*kaalud[0] + vanas6na_pikkus*kaalud[1] + randint(0,100)*kaalud[2] \
                     + originaals6na*100*kaalud[3] + levik*kaalud[4] + s6na_indeks/vanas6na_pikkus*100*kaalud[5] \
-                    + v6tmes6na_t2psel_kujul*100*kaalud[6] + parfraseeritud*kaalud[7]*100
+                    + v6tmes6na_t2psel_kujul*100*kaalud[6] + parfraseeritud*kaalud[7]*100 \
+                    + koosneb_kahest_fraasist*100*kaalud[8]
+
         skoorid.append((skoor, vanas6na, idNumber))
     skoorid = sorted(skoorid, reverse=1)
 
@@ -103,7 +109,7 @@ def kirjuta_rida(v6tmes6na, kaalud, kasutatud):
     viimane_s6na = s6nad[-1]
     return rida, viimane_s6na, kasutatud
 
-def tee_luuletus(v6tmes6na, kaalud=[-0.5,-0.7, 0.5, 0.2, 0.5, -0.5, 0.2, -0.5], tekst=[""], loendur=0, ridu=12, kasutatud=[]):
+def tee_luuletus(v6tmes6na, kaalud=[-0.5,-0.7, 0.5, 0.2, 0.5, -0.5, 0.2, -0.5, 0.5], tekst=[""], loendur=0, ridu=12, kasutatud=[]):
     v6tmes6na = v6tmes6na.lower()
     loendur +=1
     if loendur == ridu:
@@ -127,14 +133,14 @@ def tee_luuletus(v6tmes6na, kaalud=[-0.5,-0.7, 0.5, 0.2, 0.5, -0.5, 0.2, -0.5], 
 #TEHA: feat: kahest fraasist koosnev 9/6
 #TEHA: parafraseerija: ei kõige esimeseks 5/5
 #TEHA: kaks eraldi parafraseerimsit 9/10
-#TEHA: GUIsse ridade arv 6/3
+#TEHA: GUIsse ridade arv 6/3 EI
 #TEHA: GUIsse poliitika 6/4
 #TEHA: pikad read paremini vormistada
 
 ###MAIN###
 
 """
-luuletus = tee_luuletus("kolm",kaalud=[-0.5,-0.7, 0, 0.2, 0.5, -0.5, 0.2, -0.5], tekst=[""], loendur=0, ridu=12, kasutatud=[])
+luuletus = tee_luuletus("kolm",kaalud=[-0.5,-0.7, 0, 0.2, 0.5, -0.5, 0.2, -0.5, 0.5], tekst=[""], loendur=0, ridu=12, kasutatud=[])
 for line in luuletus:
     print(line)
 """

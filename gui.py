@@ -1,3 +1,5 @@
+__author__ = 'Kaspar K2ngsepp'
+
 from tkinter import *
 from tkinter import ttk
 from generaator import tee_luuletus
@@ -10,7 +12,7 @@ def kuva_luuletus(*args):
     s6na = str(võtmes6na.get())
     #KAALUD: võtmesõna indeks, vanasõna pikkus, juhuslikkus, leidub sõna esialgsel kujul (mitte lemma), vanas6na levik,
 #       v6tmesõna suhteline asetus, võtmesõna täpsel kujul (mitte sõna osana), parafraseeritud
-    kaalud=[asetus.get(),rea_pikkus.get(),juhuslikkus.get(),esialgsus.get(),levik.get(),asetus2.get(),t2psus.get(),parafraseeri.get()]
+    kaalud=[asetus.get(),rea_pikkus.get(),juhuslikkus.get(),esialgsus.get(),levik.get(),asetus2.get(),t2psus.get(),parafraseeri.get(), koosneb_kahest_fraasist.get()]
     ridadelist = tee_luuletus(s6na, kaalud, tekst=[""], loendur=0, ridu=12, kasutatud=[])
     teksti_kujul = ""
     for element in ridadelist:
@@ -83,6 +85,11 @@ ttk.Label(mainframe, text="JÄÄ").grid(column=1, row=10, sticky=E)
 parafraseeri = ttk.Scale(mainframe, orient=HORIZONTAL, length=100, from_=-1, to=0.5)
 parafraseeri.grid(column=2, row=10)
 parafraseeri.set(-0.2)
+
+ttk.Label(mainframe, text="TULI").grid(column=1, row=11, sticky=E)
+koosneb_kahest_fraasist = ttk.Scale(mainframe, orient=HORIZONTAL, length=100, from_=0, to=1)
+koosneb_kahest_fraasist.grid(column=2, row=11)
+koosneb_kahest_fraasist.set(0.3)
 
 for child in mainframe.winfo_children(): child.grid_configure(padx=5, pady=5)
 
