@@ -18,6 +18,7 @@ def kuva_luuletus(*args):
     for element in ridadelist:
         teksti_kujul += element + "\n"
     luuletus.set(teksti_kujul)
+    print(teksti_kujul)
 
 def kuva_uudis_luuletus(*args):
     #try:
@@ -34,6 +35,7 @@ def kuva_uudis_luuletus(*args):
     for element in ridadelist:
         teksti_kujul += element + "\n"
     luuletus.set(teksti_kujul)
+    print(teksti_kujul)
 
 root = Tk()
 root.title("Luuletuse generaator")

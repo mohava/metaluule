@@ -47,8 +47,7 @@ def leia_vanas6nade_parameetrid(v6tmes6nad, uued_vanas6nad, originaals6na=True, 
 #KAALUD: võtmesõna indeks, vanasõna pikkus, juhuslikkus, leidub sõna esialgsel kujul (mitte lemma), vanas6na levik,
 #       v6tmesõna suhteline asetus, võtmesõna täpsel kujul (mitte sõna osana), parafraseeritud, koosneb kahest fraasist
 def leia_parim_vanas6na(parameetrid, kasutatud, kaalud=[-0.5,-0.7, 0.5, 0.2, 0.5, -0.5, 0.2, -0.5, 0.5]):
-    #print(kaalud)
-    print("tik-tok")
+    #print("tik-tok")
     skoorid = []
     for vanas6na in parameetrid:
         s6na_indeks, vanas6na_pikkus, originaals6na, levik, v6tmes6na_t2psel_kujul, parfraseeritud, \
@@ -73,7 +72,7 @@ def leia_parim_vanas6na(parameetrid, kasutatud, kaalud=[-0.5,-0.7, 0.5, 0.2, 0.5
     return ("luuletus sai läbi", kasutatud)
 
 def kirjuta_rida(v6tmes6na, kaalud, kasutatud):
-    print("TÄHELEPANU!! võtmesõna: ",v6tmes6na)
+    #print("TÄHELEPANU!! võtmesõna: ",v6tmes6na)
     vanas6nad = kysi_vanas6nad(v6tmes6na)
     parameetrid = leia_vanas6nade_parameetrid(v6tmes6na, vanas6nad)
     lisaparameetrid = leia_vanas6nade_parameetrid(v6tmes6na, parafraseeriLaused(vanas6nad, v6tmes6na), parafraseeritud=True)
@@ -115,7 +114,7 @@ def kirjuta_rida(v6tmes6na, kaalud, kasutatud):
 def abifunktsioon(v6tmes6nad, kaalud, kasutatud):
     for v6tmes6na in v6tmes6nad:
         #v6tmes6na = v6tmes6na.lower()
-        print("click-click", v6tmes6na)
+        #print("click-click", v6tmes6na)
         rida, viimane_s6na, kasutatud = kirjuta_rida(v6tmes6na, kaalud, kasutatud)
         if rida != "luuletus sai läbi":
             return rida, viimane_s6na, kasutatud
@@ -132,11 +131,11 @@ def tee_luuletus(v6tmes6nad, kaalud=[-0.5,-0.7, 0.5, 0.2, 0.5, -0.5, 0.2, -0.5, 
         return tekst
     if type(v6tmes6nad) != list:
         v6tmes6nad = [v6tmes6nad]
-    print("enne abifunci", v6tmes6nad)
+    #print("enne abifunci", v6tmes6nad)
     rida, viimane_s6na, kasutatud = abifunktsioon(v6tmes6nad, kaalud, kasutatud)
 
-    print(rida.upper())
-    print(tekst)
+    #print(rida)
+    #print(tekst)
     tekst.append(rida)
     v6tmes6na = viimane_s6na.strip(".")
     tee_luuletus(v6tmes6na, kaalud, tekst, loendur, ridu, kasutatud)
