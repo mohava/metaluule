@@ -51,7 +51,8 @@ def kuva_uudis_luuletus(*args):
         kaalud=[asetus.get(),rea_pikkus.get(),juhuslikkus.get(),esialgsus.get(),levik.get(),asetus2.get(),t2psus.get(),parafraseeri.get(), koosneb_kahest_fraasist.get()]
         uudis, uudiselink = vali_uudis(puhasta(improdi_uudised()))
         s6nad = uudis2v6tmesõnad(uudis)
-        ridadelist = tee_luuletus(s6nad, kaalud, tekst=[uudis], loendur=0, ridu=12, kasutatud=[])
+        ridu = int(realiugur.get())
+        ridadelist = tee_luuletus(s6nad, kaalud, ridu, tekst=[uudis], loendur=0, kasutatud=[])
 
         pealkiri.set(ridadelist[0])
         linkTekstina.set(uudiselink)
