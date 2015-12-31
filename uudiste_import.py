@@ -1,5 +1,5 @@
 __author__ = 'Kaspar K2ngsepp, Mihkel Kohava'
-
+import random
 import requests
 from bs4 import BeautifulSoup
 #DELFI, ERR, PM, ÄRILEHT, NAISTEKAS??, ELU 24...
@@ -10,7 +10,7 @@ def improdi_uudised():
     # #uudised = soup.ul.li.get_text().encode("utf-8")
     r = requests.get('http://www.delfi.ee/archive/viimased/')
     soup = BeautifulSoup(r.content, "html.parser")
-    print(soup)
+    #print(soup)
     #uudised = soup.body.ol.li.div.a.get_text() #saab ainult ühe uudise
     uudised = soup.body.ol.get_text().strip()
     list = uudised.split('\n')
@@ -27,15 +27,32 @@ def improdi_uudised():
 
 
 def puhasta(uudised):
-    puhastatud = set()
+    puhastatud = []
     for uudis in uudised:
         if len(uudis.split(" ")) < 3:
             pass
-        else:
-            puhastatud.add(uudis)
+        s6nad = []
+        for s6na in uudis.split(" "):
+            if s6na in {"FOTOD", "VIDEO"}:
+                pass
+            else:
+                s6nad.append(s6na)
+        uudis = " ".join(s6nad)
+
+        puhastatud.append(uudis)
     return puhastatud
 
-uudised = improdi_uudised()
-for uudis in puhasta(uudised):
-    print(uudis)
+def vali_uudis(uudised):
+    uudis = random.choice(uudised)
+    return uudis
+
+def uudis2v6tmesõnad(uudis):
+    v6tmesõnad = set()
+    s6nad = uudis.strip().split(" ")
+    for s6na in s6nad:
+        if s6na in {"ja", "või"}:
+            pass
+        else:
+            v6tmesõnad.add(s6na)
+    return list(v6tmesõnad)
 

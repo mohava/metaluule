@@ -72,7 +72,7 @@ def leia_parim_vanas6na(parameetrid, kasutatud, kaalud=[-0.5,-0.7, 0.5, 0.2, 0.5
     return ("luuletus sai läbi", kasutatud)
 
 def kirjuta_rida(v6tmes6na, kaalud, kasutatud):
-    #print("TÄHELEPANU!! võtmesõna: ",v6tmes6na)
+    print("TÄHELEPANU!! võtmesõna: ",v6tmes6na)
     vanas6nad = kysi_vanas6nad(v6tmes6na)
     parameetrid = leia_vanas6nade_parameetrid(v6tmes6na, vanas6nad)
     lisaparameetrid = leia_vanas6nade_parameetrid(v6tmes6na, parafraseeriLaused(vanas6nad, v6tmes6na), parafraseeritud=True)
@@ -82,6 +82,7 @@ def kirjuta_rida(v6tmes6na, kaalud, kasutatud):
 
 
     if rida == "luuletus sai läbi":
+        print("lemmatiseerin-sünteerin")
         lemmad = list(lemmatiseeri(v6tmes6na))
         v6tmes6nad = deepcopy(lemmad)
         for lemma in lemmad:
@@ -107,22 +108,39 @@ def kirjuta_rida(v6tmes6na, kaalud, kasutatud):
 
     s6nad = rida.split()
     viimane_s6na = s6nad[-1]
+    print("RIDA", rida)
     return rida, viimane_s6na, kasutatud
 
-def tee_luuletus(v6tmes6na, kaalud=[-0.5,-0.7, 0.5, 0.2, 0.5, -0.5, 0.2, -0.5, 0.5], tekst=[""], loendur=0, ridu=12, kasutatud=[]):
-    v6tmes6na = v6tmes6na.lower()
+def abifunktsioon(v6tmes6nad, kaalud, kasutatud):
+    for v6tmes6na in v6tmes6nad:
+        #v6tmes6na = v6tmes6na.lower()
+        print("click-click", v6tmes6na)
+        rida, viimane_s6na, kasutatud = kirjuta_rida(v6tmes6na, kaalud, kasutatud)
+        if rida != "luuletus sai läbi":
+            return rida, viimane_s6na, kasutatud
+    else:
+        return "luuletus sai läbi", "", []
+
+def tee_luuletus(v6tmes6nad, kaalud=[-0.5,-0.7, 0.5, 0.2, 0.5, -0.5, 0.2, -0.5, 0.5], tekst=[""], loendur=0, ridu=12, kasutatud=[]):
+    #v6tmes6na = v6tmes6na.lower()
     loendur +=1
     if loendur == ridu:
         return tekst
     if tekst[-1] == "luuletus sai läbi":
         eeltekst = tekst.remove("luuletus sai läbi")
         return eeltekst
-    rida, viimane_s6na, kasutatud = kirjuta_rida(v6tmes6na, kaalud, kasutatud)
+    if type(v6tmes6nad) != list:
+        v6tmes6nad = [v6tmes6nad]
+    print("enne abifunci", v6tmes6nad)
+    rida, viimane_s6na, kasutatud = abifunktsioon(v6tmes6nad, kaalud, kasutatud)
+
     print(rida)
     tekst.append(rida)
     v6tmes6na = viimane_s6na.strip(".")
     tee_luuletus(v6tmes6na, kaalud, tekst, loendur, ridu, kasutatud)
     return tekst
+
+
 
 #TEHA: mitmeharuline rekursioon (kogu luuletuse skoori arvutamine), parima luuletuse esitamine  8/10= 0.8
 #TEHA: kui ei leia viimast sõna siis lisada rida "viimane sõna, sünonüüm"  4/5
@@ -136,6 +154,7 @@ def tee_luuletus(v6tmes6na, kaalud=[-0.5,-0.7, 0.5, 0.2, 0.5, -0.5, 0.2, -0.5, 0
 #TEHA: GUIsse ridade arv 6/3 EI
 #TEHA: GUIsse poliitika 6/4
 #TEHA: pikad read paremini vormistada
+#TEHA: siluda ja ühtlustada generaatori koodi
 
 ###MAIN###
 
