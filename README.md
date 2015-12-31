@@ -12,6 +12,20 @@ Sammud:
 5. Või kasuta Loe lehte nuppu, et koostada päevakajaline luuletus.
 6. Vajuta luuletusele, et lugeda uudist.
 
+Kaalude kirjeldus:
+
+Slaidereid paremale lükates kaalu väärtus suureneb.
+
+SAATUS  - juhuslikkus algoritmis
+TÕDE    - rea pikkus
+TÖÖ     - võtmesõna asetus vanasõnas
+VERI    - võtmesõna suhteline asetus arvestades vanasõna pikkust
+ARMASTUS - võtmesõna leidumine esialgsel kujul (mitte teises vormis)
+AU      - vanasõna populaarsus
+ÕIGUS   - vanasõna leidumine eraldiseisva sõnana (mitte sõna osana)
+JÄÄ     - parafraseeritud vanasõnad
+TULI    - vanasõna koosneb kahest fraasist
+
 
 Parameetrite lisamine:
 1. Lisa parameetri arvutamise valem leia_parameetrid() funktsiooni.
