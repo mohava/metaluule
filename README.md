@@ -33,3 +33,6 @@ Parameetrite lisamine:
 2. Lisa parameeter leia_parim_vanas6na() funktsiooni.
 3. Lisa parameeterile vastav kaal.
 4. Lisa kaalule slaider gui.py'sse.
+
+
+Võta ühendust: mihkelkohava@gmail.com, kaspar95@gmail.com
