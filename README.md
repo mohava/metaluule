@@ -11,6 +11,7 @@ Sammud:
 4. Kasuta slaidereid, et muuta luuletuse koosatmise algritmi
 5. Või kasuta Loe lehte nuppu, et koostada päevakajaline luuletus.
 6. Vajuta luuletusele, et lugeda uudist.
+7. Soovitatav on alustada vaikeseadetega.
 
 Kaalude kirjeldus:
 
