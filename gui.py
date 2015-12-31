@@ -10,7 +10,10 @@ def l6ikelauale(*args):
     r = Tk()
     r.withdraw()
     r.clipboard_clear()
-    r.clipboard_append(luuletus.get())
+    pk = pealkiri.get()
+    if pk != '':
+        pk += '\n'
+    r.clipboard_append(pk + luuletus.get())
     r.destroy()
 
 def kuva_luuletus(*args):
