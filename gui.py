@@ -33,7 +33,7 @@ def kuva_luuletus(*args):
         luuletus.set(teksti_kujul)
         #print(teksti_kujul)
     except:
-        luuletus.set("ANDMEBAASIGA \nEI SAA ÜHENDUST")
+        luuletus.set("KONTROLLIGE \nINTERNETIÜHENDUST")
         root.update()
 
 def kuvaUudis(event):
@@ -62,7 +62,7 @@ def kuva_uudis_luuletus(*args):
         luuletus.set(teksti_kujul)
         #print(teksti_kujul)
     except:
-        luuletus.set("ANDMEBAASIGA \nEI SAA ÜHENDUST")
+        luuletus.set("KONTROLLIGE \nINTERNETIÜHENDUST")
         root.update()
 root = Tk()
 root.title("Luuletuse generaator")
@@ -104,9 +104,9 @@ ttk.Label(mainframe, image = image2).grid(column=3, row=3, sticky=E)
 #Spinbox
 ttk.Label(mainframe, text='Vanasõnu:').grid(column=3, row=5, sticky=E)
 ridu = StringVar()
-realiugur = Spinbox(mainframe, from_=4, to=12, textvariable=ridu, width=6)
+ridu.set('12')
+realiugur = Spinbox(mainframe, from_=4, to=16, textvariable=ridu, width=6)
 realiugur.grid(column=3, row=6, sticky=E)
-#realiugur.set(12) #SEDA FUNKTSIONAALSUST EI OLE millegipärast
 
 
 #Slaiderid
