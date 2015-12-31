@@ -7,6 +7,7 @@ from lyhendaja import lyhenda
 from parafraseerija import parafraseeriLaused
 from syntesaator import synteseeri
 from copy import deepcopy
+from ridade_asetus import  ilusta
 
 def leia_vanas6nade_parameetrid(v6tmes6nad, uued_vanas6nad, originaals6na=True, parafraseeritud=False):
     parameetrid=defaultdict(list)
@@ -125,20 +126,21 @@ def tee_luuletus(v6tmes6nad, kaalud=[-0.5,-0.7, 0.5, 0.2, 0.5, -0.5, 0.2, -0.5, 
     #v6tmes6na = v6tmes6na.lower()
     loendur +=1
     if loendur == ridu:
-        return tekst
+        return ilusta(tekst)
     if tekst[-1] == "luuletus sai läbi":
-        eeltekst = tekst.remove("luuletus sai läbi")
-        return eeltekst
+        tekst = tekst.remove("luuletus sai läbi")
+        return tekst
     if type(v6tmes6nad) != list:
         v6tmes6nad = [v6tmes6nad]
     print("enne abifunci", v6tmes6nad)
     rida, viimane_s6na, kasutatud = abifunktsioon(v6tmes6nad, kaalud, kasutatud)
 
-    print(rida)
+    print(rida.upper())
+    print(tekst)
     tekst.append(rida)
     v6tmes6na = viimane_s6na.strip(".")
     tee_luuletus(v6tmes6na, kaalud, tekst, loendur, ridu, kasutatud)
-    return tekst
+    return ilusta(tekst)
 
 
 

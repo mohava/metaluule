@@ -29,17 +29,17 @@ def improdi_uudised():
 def puhasta(uudised):
     puhastatud = []
     for uudis in uudised:
-        if len(uudis.split(" ")) < 3:
+        if len(uudis.split(" ")) < 3 or len(uudis)<9:
             pass
-        s6nad = []
-        for s6na in uudis.split(" "):
-            if s6na in {"FOTOD", "VIDEO"}:
-                pass
-            else:
-                s6nad.append(s6na)
-        uudis = " ".join(s6nad)
-
-        puhastatud.append(uudis)
+        else:
+            s6nad = []
+            for s6na in uudis.split(" "):
+                if s6na in {"FOTOD:", "VIDEO:", "GRAAFIK:"}:
+                    pass
+                else:
+                    s6nad.append(s6na)
+            uudis = " ".join(s6nad)
+            puhastatud.append(uudis)
     return puhastatud
 
 def vali_uudis(uudised):
@@ -47,12 +47,13 @@ def vali_uudis(uudised):
     return uudis
 
 def uudis2v6tmesõnad(uudis):
-    v6tmesõnad = set()
+    v6tmesõnad = []
     s6nad = uudis.strip().split(" ")
     for s6na in s6nad:
         if s6na in {"ja", "või"}:
             pass
         else:
-            v6tmesõnad.add(s6na)
+            v6tmesõnad.append(s6na)
     return list(v6tmesõnad)
 
+#print(puhasta(["Kohver"]))
