@@ -14,49 +14,55 @@ def l6ikelauale(*args):
     r.destroy()
 
 def kuva_luuletus(*args):
-    #try:
-    pealkiri.set("")
-    luuletus.set("LUULETUST GENEREERITAKSE...")
-    root.update()
-    s6na = str(võtmes6na.get())
-    #KAALUD: võtmesõna indeks, vanasõna pikkus, juhuslikkus, leidub sõna esialgsel kujul (mitte lemma), vanas6na levik,
-#       v6tmesõna suhteline asetus, võtmesõna täpsel kujul (mitte sõna osana), parafraseeritud
-    kaalud=[asetus.get(),rea_pikkus.get(),juhuslikkus.get(),esialgsus.get(),levik.get(),asetus2.get(),t2psus.get(),parafraseeri.get(), koosneb_kahest_fraasist.get()]
-    ridadelist = tee_luuletus(s6na, kaalud, tekst=[""], loendur=0, ridu=12, kasutatud=[])
-    #pealkiri.set(s6na)
-    linkTekstina.set("www.github.com/mohava/metaluule")
-    teksti_kujul = ""
-    for element in ridadelist:
-        teksti_kujul += element + "\n"
-    luuletus.set(teksti_kujul)
-    print(teksti_kujul)
+    try:
+        requests.get('http://www.folklore.ee/')
+        pealkiri.set("")
+        luuletus.set("LUULETUST GENEREERITAKSE...")
+        root.update()
+        s6na = str(võtmes6na.get())
+        #KAALUD: võtmesõna indeks, vanasõna pikkus, juhuslikkus, leidub sõna esialgsel kujul (mitte lemma), vanas6na levik,
+    #       v6tmesõna suhteline asetus, võtmesõna täpsel kujul (mitte sõna osana), parafraseeritud
+        kaalud=[asetus.get(),rea_pikkus.get(),juhuslikkus.get(),esialgsus.get(),levik.get(),asetus2.get(),t2psus.get(),parafraseeri.get(), koosneb_kahest_fraasist.get()]
+        ridadelist = tee_luuletus(s6na, kaalud, tekst=[""], loendur=0, ridu=12, kasutatud=[])
+        #pealkiri.set(s6na)
+        linkTekstina.set("www.github.com/mohava/metaluule")
+        teksti_kujul = ""
+        for element in ridadelist:
+            teksti_kujul += element + "\n"
+        luuletus.set(teksti_kujul)
+        #print(teksti_kujul)
+    except:
+        luuletus.set("ANDMEBAASIGA \nEI SAA ÜHENDUST")
+        root.update()
 
 def kuvaUudis(event):
     link = linkTekstina.get()
     webbrowser.open_new(link)
-
 def kuva_uudis_luuletus(*args):
-    #try:
-    pealkiri.set("")
-    luuletus.set("LUULETUST GENEREERITAKSE...")
-    root.update()
+    try:
+        requests.get('http://www.folklore.ee/')
+        pealkiri.set("")
+        luuletus.set("LUULETUST GENEREERITAKSE...")
+        root.update()
 
-    #KAALUD: võtmesõna indeks, vanasõna pikkus, juhuslikkus, leidub sõna esialgsel kujul (mitte lemma), vanas6na levik,
-#       v6tmesõna suhteline asetus, võtmesõna täpsel kujul (mitte sõna osana), parafraseeritud
-    kaalud=[asetus.get(),rea_pikkus.get(),juhuslikkus.get(),esialgsus.get(),levik.get(),asetus2.get(),t2psus.get(),parafraseeri.get(), koosneb_kahest_fraasist.get()]
-    uudis, uudiselink = vali_uudis(puhasta(improdi_uudised()))
-    s6nad = uudis2v6tmesõnad(uudis)
-    ridadelist = tee_luuletus(s6nad, kaalud, tekst=[uudis], loendur=0, ridu=12, kasutatud=[])
+        #KAALUD: võtmesõna indeks, vanasõna pikkus, juhuslikkus, leidub sõna esialgsel kujul (mitte lemma), vanas6na levik,
+    #       v6tmesõna suhteline asetus, võtmesõna täpsel kujul (mitte sõna osana), parafraseeritud
+        kaalud=[asetus.get(),rea_pikkus.get(),juhuslikkus.get(),esialgsus.get(),levik.get(),asetus2.get(),t2psus.get(),parafraseeri.get(), koosneb_kahest_fraasist.get()]
+        uudis, uudiselink = vali_uudis(puhasta(improdi_uudised()))
+        s6nad = uudis2v6tmesõnad(uudis)
+        ridadelist = tee_luuletus(s6nad, kaalud, tekst=[uudis], loendur=0, ridu=12, kasutatud=[])
 
-    pealkiri.set(ridadelist[0])
-    linkTekstina.set(uudiselink)
+        pealkiri.set(ridadelist[0])
+        linkTekstina.set(uudiselink)
 
-    teksti_kujul = ""
-    for element in ridadelist[1:]:
-        teksti_kujul += element + "\n"
-    luuletus.set(teksti_kujul)
-    print(teksti_kujul)
-
+        teksti_kujul = ""
+        for element in ridadelist[1:]:
+            teksti_kujul += element + "\n"
+        luuletus.set(teksti_kujul)
+        #print(teksti_kujul)
+    except:
+        luuletus.set("ANDMEBAASIGA \nEI SAA ÜHENDUST")
+        root.update()
 root = Tk()
 root.title("Luuletuse generaator")
 mainframe = ttk.Frame(root, padding="3 3 12 12")
