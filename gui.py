@@ -4,6 +4,7 @@ from tkinter import *
 from tkinter import ttk
 from generaator import tee_luuletus
 from uudiste_import import *
+import webbrowser
 
 def kuva_luuletus(*args):
     #try:
@@ -20,6 +21,10 @@ def kuva_luuletus(*args):
     luuletus.set(teksti_kujul)
     print(teksti_kujul)
 
+def kuvaUudis(event):
+    link = linkTekstina.get()
+    webbrowser.open_new(link)
+
 def kuva_uudis_luuletus(*args):
     #try:
     luuletus.set("LUULETUST GENEREERITAKSE...")
@@ -28,11 +33,15 @@ def kuva_uudis_luuletus(*args):
     #KAALUD: võtmesõna indeks, vanasõna pikkus, juhuslikkus, leidub sõna esialgsel kujul (mitte lemma), vanas6na levik,
 #       v6tmesõna suhteline asetus, võtmesõna täpsel kujul (mitte sõna osana), parafraseeritud
     kaalud=[asetus.get(),rea_pikkus.get(),juhuslikkus.get(),esialgsus.get(),levik.get(),asetus2.get(),t2psus.get(),parafraseeri.get(), koosneb_kahest_fraasist.get()]
-    uudis = vali_uudis(puhasta(improdi_uudised()))
+    uudis, uudiselink = vali_uudis(puhasta(improdi_uudised()))
     s6nad = uudis2v6tmesõnad(uudis)
     ridadelist = tee_luuletus(s6nad, kaalud, tekst=[uudis], loendur=0, ridu=12, kasutatud=[])
+
+    pealkiri.set(ridadelist[0])
+    linkTekstina.set(uudiselink)
+
     teksti_kujul = ""
-    for element in ridadelist:
+    for element in ridadelist[1:]:
         teksti_kujul += element + "\n"
     luuletus.set(teksti_kujul)
     print(teksti_kujul)
@@ -46,14 +55,22 @@ mainframe.rowconfigure(0, weight=1)
 
 võtmes6na = StringVar()
 luuletus = StringVar()
+pealkiri = StringVar()
+linkTekstina= StringVar()
 
 võtmes6na_entry = ttk.Entry(mainframe, width=20, textvariable=võtmes6na)
 võtmes6na_entry.grid(column=2, row=1, sticky=(W, E))
-#Sisendiväli, nupud
-ttk.Label(mainframe, textvariable=luuletus).grid(column=2, row=3, sticky=(W, E))
+#Sisendiväli, nupud, väljund
+pealkiriObjekt = ttk.Label(mainframe, textvariable=pealkiri)
+pealkiriObjekt.grid(column= 2, row=2, sticky=(W,E))
+pealkiriObjekt.bind("<Button-1>", kuvaUudis)
+
+luuletusObjekt = ttk.Label(mainframe, textvariable=luuletus)
+luuletusObjekt.grid(column=2, row=3, sticky=(W,N, E))
+luuletusObjekt.bind("<Button-1>", kuvaUudis)
 ttk.Button(mainframe, text="Kirjuta", command=kuva_luuletus).grid(column=3, row=1, sticky=W)
 
-ttk.Button(mainframe, text="Loe", command=kuva_uudis_luuletus).grid(column=2, row=2)
+ttk.Button(mainframe, text="Loe lehest", command=kuva_uudis_luuletus).grid(column=2, row=13)
 #Tekst
 ttk.Label(mainframe, text="Sõna: ").grid(column=1, row=1, sticky=E)
 ttk.Label(mainframe, text="M. Kohava").grid(column=1, row=13, sticky=W)
