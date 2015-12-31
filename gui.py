@@ -8,6 +8,7 @@ import webbrowser
 
 def kuva_luuletus(*args):
     #try:
+    pealkiri.set("")
     luuletus.set("LUULETUST GENEREERITAKSE...")
     root.update()
     s6na = str(võtmes6na.get())
@@ -15,6 +16,8 @@ def kuva_luuletus(*args):
 #       v6tmesõna suhteline asetus, võtmesõna täpsel kujul (mitte sõna osana), parafraseeritud
     kaalud=[asetus.get(),rea_pikkus.get(),juhuslikkus.get(),esialgsus.get(),levik.get(),asetus2.get(),t2psus.get(),parafraseeri.get(), koosneb_kahest_fraasist.get()]
     ridadelist = tee_luuletus(s6na, kaalud, tekst=[""], loendur=0, ridu=12, kasutatud=[])
+    #pealkiri.set(s6na)
+    linkTekstina.set("www.github.com/mohava/metaluule")
     teksti_kujul = ""
     for element in ridadelist:
         teksti_kujul += element + "\n"
@@ -27,6 +30,7 @@ def kuvaUudis(event):
 
 def kuva_uudis_luuletus(*args):
     #try:
+    pealkiri.set("")
     luuletus.set("LUULETUST GENEREERITAKSE...")
     root.update()
 
