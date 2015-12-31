@@ -23,7 +23,8 @@ def kuva_luuletus(*args):
         #KAALUD: võtmesõna indeks, vanasõna pikkus, juhuslikkus, leidub sõna esialgsel kujul (mitte lemma), vanas6na levik,
     #       v6tmesõna suhteline asetus, võtmesõna täpsel kujul (mitte sõna osana), parafraseeritud
         kaalud=[asetus.get(),rea_pikkus.get(),juhuslikkus.get(),esialgsus.get(),levik.get(),asetus2.get(),t2psus.get(),parafraseeri.get(), koosneb_kahest_fraasist.get()]
-        ridadelist = tee_luuletus(s6na, kaalud, tekst=[""], loendur=0, ridu=12, kasutatud=[])
+        ridu = int(realiugur.get())
+        ridadelist = tee_luuletus(s6na, kaalud, ridu, tekst=[""], loendur=0, kasutatud=[])
         #pealkiri.set(s6na)
         linkTekstina.set("www.github.com/mohava/metaluule")
         teksti_kujul = ""
@@ -99,6 +100,14 @@ image1 = PhotoImage(file='kk1.png')
 image2 = PhotoImage(file='kk2.png')
 ttk.Label(mainframe, image = image1).grid(column=1, row=3, sticky=E)
 ttk.Label(mainframe, image = image2).grid(column=3, row=3, sticky=E)
+
+#Spinbox
+ttk.Label(mainframe, text='Vanasõnu:').grid(column=3, row=5, sticky=E)
+ridu = StringVar()
+realiugur = Spinbox(mainframe, from_=4, to=12, textvariable=ridu, width=6)
+realiugur.grid(column=3, row=6, sticky=E)
+#realiugur.set(12) #SEDA FUNKTSIONAALSUST EI OLE millegipärast
+
 
 #Slaiderid
 ttk.Label(mainframe, text="SAATUS").grid(column=1, row=4, sticky=E)
