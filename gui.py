@@ -144,7 +144,7 @@ parafraseeri.set(-0.2)
 ttk.Label(mainframe, text="TULI").grid(column=1, row=12, sticky=E)
 koosneb_kahest_fraasist = ttk.Scale(mainframe, orient=HORIZONTAL, length=100, from_=0, to=1)
 koosneb_kahest_fraasist.grid(column=2, row=12)
-koosneb_kahest_fraasist.set(0.3)
+koosneb_kahest_fraasist.set(0)
 
 
 
