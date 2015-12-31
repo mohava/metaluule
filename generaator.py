@@ -121,7 +121,7 @@ def abifunktsioon(v6tmes6nad, kaalud, kasutatud):
     else:
         return "luuletus sai läbi", "", []
 
-def tee_luuletus(v6tmes6nad, kaalud=[-0.5,-0.7, 0.5, 0.2, 0.5, -0.5, 0.2, -0.5, 0.5], tekst=[""], loendur=0, ridu=12, kasutatud=[]):
+def tee_luuletus(v6tmes6nad, kaalud=[-0.5,-0.7, 0.5, 0.2, 0.5, -0.5, 0.2, -0.5, 0.5], ridu=12, tekst=[""], loendur=0, kasutatud=[]):
     #v6tmes6na = v6tmes6na.lower()
     loendur +=1
     if loendur == ridu:
@@ -138,7 +138,7 @@ def tee_luuletus(v6tmes6nad, kaalud=[-0.5,-0.7, 0.5, 0.2, 0.5, -0.5, 0.2, -0.5, 
     #print(tekst)
     tekst.append(rida)
     v6tmes6na = viimane_s6na.strip(".")
-    tee_luuletus(v6tmes6na, kaalud, tekst, loendur, ridu, kasutatud)
+    tee_luuletus(v6tmes6na, kaalud, ridu, tekst, loendur, kasutatud)
     return ilusta(tekst)
 
 

@@ -10,7 +10,10 @@ def l6ikelauale(*args):
     r = Tk()
     r.withdraw()
     r.clipboard_clear()
-    r.clipboard_append(luuletus.get())
+    pk = pealkiri.get()
+    if pk != '':
+        pk += '\n'
+    r.clipboard_append(pk + luuletus.get())
     r.destroy()
 
 def kuva_luuletus(*args):
@@ -23,7 +26,8 @@ def kuva_luuletus(*args):
         #KAALUD: võtmesõna indeks, vanasõna pikkus, juhuslikkus, leidub sõna esialgsel kujul (mitte lemma), vanas6na levik,
     #       v6tmesõna suhteline asetus, võtmesõna täpsel kujul (mitte sõna osana), parafraseeritud
         kaalud=[asetus.get(),rea_pikkus.get(),juhuslikkus.get(),esialgsus.get(),levik.get(),asetus2.get(),t2psus.get(),parafraseeri.get(), koosneb_kahest_fraasist.get()]
-        ridadelist = tee_luuletus(s6na, kaalud, tekst=[""], loendur=0, ridu=12, kasutatud=[])
+        ridu = int(realiugur.get())
+        ridadelist = tee_luuletus(s6na, kaalud, ridu, tekst=[""], loendur=0, kasutatud=[])
         #pealkiri.set(s6na)
         linkTekstina.set("www.github.com/mohava/metaluule")
         teksti_kujul = ""
@@ -32,7 +36,7 @@ def kuva_luuletus(*args):
         luuletus.set(teksti_kujul)
         #print(teksti_kujul)
     except:
-        luuletus.set("ANDMEBAASIGA \nEI SAA ÜHENDUST")
+        luuletus.set("KONTROLLIGE \nINTERNETIÜHENDUST")
         root.update()
 
 def kuvaUudis(event):
@@ -50,7 +54,8 @@ def kuva_uudis_luuletus(*args):
         kaalud=[asetus.get(),rea_pikkus.get(),juhuslikkus.get(),esialgsus.get(),levik.get(),asetus2.get(),t2psus.get(),parafraseeri.get(), koosneb_kahest_fraasist.get()]
         uudis, uudiselink = vali_uudis(puhasta(improdi_uudised()))
         s6nad = uudis2v6tmesõnad(uudis)
-        ridadelist = tee_luuletus(s6nad, kaalud, tekst=[uudis], loendur=0, ridu=12, kasutatud=[])
+        ridu = int(realiugur.get())
+        ridadelist = tee_luuletus(s6nad, kaalud, ridu, tekst=[uudis], loendur=0, kasutatud=[])
 
         pealkiri.set(ridadelist[0])
         linkTekstina.set(uudiselink)
@@ -61,7 +66,7 @@ def kuva_uudis_luuletus(*args):
         luuletus.set(teksti_kujul)
         #print(teksti_kujul)
     except:
-        luuletus.set("ANDMEBAASIGA \nEI SAA ÜHENDUST")
+        luuletus.set("KONTROLLIGE \nINTERNETIÜHENDUST")
         root.update()
 root = Tk()
 root.title("Luuletuse generaator")
@@ -99,6 +104,14 @@ image1 = PhotoImage(file='kk1.png')
 image2 = PhotoImage(file='kk2.png')
 ttk.Label(mainframe, image = image1).grid(column=1, row=3, sticky=E)
 ttk.Label(mainframe, image = image2).grid(column=3, row=3, sticky=E)
+
+#Spinbox
+ttk.Label(mainframe, text='Vanasõnu:').grid(column=3, row=5, sticky=E)
+ridu = StringVar()
+ridu.set('12')
+realiugur = Spinbox(mainframe, from_=4, to=16, textvariable=ridu, width=6)
+realiugur.grid(column=3, row=6, sticky=E)
+
 
 #Slaiderid
 ttk.Label(mainframe, text="SAATUS").grid(column=1, row=4, sticky=E)
