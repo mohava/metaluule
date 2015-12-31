@@ -117,37 +117,37 @@ realiugur.grid(column=3, row=6, sticky=E)
 ttk.Label(mainframe, text="SAATUS").grid(column=1, row=4, sticky=E)
 juhuslikkus = ttk.Scale(mainframe, orient=HORIZONTAL, length=100, from_=0.0, to=0.5)
 juhuslikkus.grid(column=2, row=4)
-juhuslikkus.set(0.2)
+juhuslikkus.set(0.3)
 
 ttk.Label(mainframe, text="TÕDE").grid(column=1, row=5, sticky=E)
 rea_pikkus = ttk.Scale(mainframe, orient=HORIZONTAL, length=100, from_=-1, to=-0.1)
 rea_pikkus.grid(column=2, row=5)
-rea_pikkus.set(-0.7)
+rea_pikkus.set(-0.8)
 
 ttk.Label(mainframe, text="TÖÖ").grid(column=1, row=6, sticky=E)
-asetus = ttk.Scale(mainframe, orient=HORIZONTAL, length=100, from_=-0.4, to=-0.7)
+asetus = ttk.Scale(mainframe, orient=HORIZONTAL, length=100, from_=-0.3, to=-0.8)
 asetus.grid(column=2, row=6)
 asetus.set(-0.5)
 
 ttk.Label(mainframe, text="VERI").grid(column=1, row=7, sticky=E)
-asetus2 = ttk.Scale(mainframe, orient=HORIZONTAL, length=100, from_=-0.4, to=-0.7)
+asetus2 = ttk.Scale(mainframe, orient=HORIZONTAL, length=100, from_=-0.3, to=-0.8)
 asetus2.grid(column=2, row=7)
 asetus2.set(-0.5)
 
 ttk.Label(mainframe, text="ARMASTUS").grid(column=1, row=8, sticky=E)
 esialgsus = ttk.Scale(mainframe, orient=HORIZONTAL, length=100, from_=0.1, to=0.7)
 esialgsus.grid(column=2, row=8)
-esialgsus.set(0.2)
+esialgsus.set(0.4)
 
 ttk.Label(mainframe, text="AU").grid(column=1, row=9, sticky=E)
 levik = ttk.Scale(mainframe, orient=HORIZONTAL, length=100, from_=0, to=1.0)
 levik.grid(column=2, row=9)
-levik.set(0)
+levik.set(0.2)
 
 ttk.Label(mainframe, text="ÕIGUS").grid(column=1, row=10, sticky=E)
 t2psus = ttk.Scale(mainframe, orient=HORIZONTAL, length=100, from_=0.1, to=0.7)
 t2psus.grid(column=2, row=10)
-t2psus.set(0.2)
+t2psus.set(0.4)
 
 ttk.Label(mainframe, text="JÄÄ").grid(column=1, row=11, sticky=E)
 parafraseeri = ttk.Scale(mainframe, orient=HORIZONTAL, length=100, from_=-1, to=0.5)
@@ -157,7 +157,7 @@ parafraseeri.set(-0.2)
 ttk.Label(mainframe, text="TULI").grid(column=1, row=12, sticky=E)
 koosneb_kahest_fraasist = ttk.Scale(mainframe, orient=HORIZONTAL, length=100, from_=0, to=1)
 koosneb_kahest_fraasist.grid(column=2, row=12)
-koosneb_kahest_fraasist.set(0.3)
+koosneb_kahest_fraasist.set(0.2)
 
 
 

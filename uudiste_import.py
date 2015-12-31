@@ -42,7 +42,7 @@ def uudis2v6tmesõnad(uudis):
     v6tmesõnad = []
     s6nad = uudis.strip().split(" ")
     for s6na in s6nad:
-        if s6na in {"ja", "või"}:
+        if s6na in {"ja", "või", "on"}:
             pass
         else:
             v6tmesõnad.append(s6na)
