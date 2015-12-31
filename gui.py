@@ -41,11 +41,6 @@ def kuvaUudis(event):
 def kuva_uudis_luuletus(*args):
     try:
         requests.get('http://www.folklore.ee/')
-        #uudise pealkiri
-        pealkiriObjekt = ttk.Label(mainframe, textvariable=pealkiri)
-        pealkiriObjekt.grid(column= 2, row=2, sticky=(W,E))
-        pealkiriObjekt.bind("<Button-1>", kuvaUudis)
-
         pealkiri.set("")
         luuletus.set("LUULETUST GENEREERITAKSE...")
         root.update()
@@ -83,6 +78,9 @@ linkTekstina= StringVar()
 võtmes6na_entry = ttk.Entry(mainframe, width=20, textvariable=võtmes6na)
 võtmes6na_entry.grid(column=2, row=1, sticky=(W, E))
 #Sisendiväli, nupud, väljund
+pealkiriObjekt = ttk.Label(mainframe, textvariable=pealkiri)
+pealkiriObjekt.grid(column= 2, row=2, sticky=(W,E))
+pealkiriObjekt.bind("<Button-1>", kuvaUudis)
 
 luuletusObjekt = ttk.Label(mainframe, textvariable=luuletus)
 luuletusObjekt.grid(column=2, row=3, sticky=(W,N, E))
