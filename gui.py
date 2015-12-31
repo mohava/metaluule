@@ -6,6 +6,13 @@ from generaator import tee_luuletus
 from uudiste_import import *
 import webbrowser
 
+def l6ikelauale(*args):
+    r = Tk()
+    r.withdraw()
+    r.clipboard_clear()
+    r.clipboard_append(luuletus.get())
+    r.destroy()
+
 def kuva_luuletus(*args):
     #try:
     pealkiri.set("")
@@ -73,6 +80,8 @@ luuletusObjekt = ttk.Label(mainframe, textvariable=luuletus)
 luuletusObjekt.grid(column=2, row=3, sticky=(W,N, E))
 luuletusObjekt.bind("<Button-1>", kuvaUudis)
 ttk.Button(mainframe, text="Kirjuta", command=kuva_luuletus).grid(column=3, row=1, sticky=W)
+
+ttk.Button(mainframe, text="Kopeeri", command=l6ikelauale).grid(column=3, row=12)
 
 ttk.Button(mainframe, text="Loe lehest", command=kuva_uudis_luuletus).grid(column=2, row=13)
 #Tekst
