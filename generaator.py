@@ -149,12 +149,9 @@ def tee_luuletus(v6tmes6nad, kaalud=[-0.5,-0.7, 0.5, 0.2, 0.5, -0.5, 0.2, -0.5, 
 #TEHA: salvestada päringute tulemused anmbaasi: päritud võtmesõnad ja vanasõnad 2/10
 #THEA: normaliseerida  iga seti skoorid 9/8
 #TEHA: features: riimub? sama pikkus mis eelmisel? 4/8
-#TEHA: feat: kahest fraasist koosnev 9/6
 #TEHA: parafraseerija: ei kõige esimeseks 5/5
 #TEHA: kaks eraldi parafraseerimsit 9/10
-#TEHA: GUIsse ridade arv 6/3 EI
-#TEHA: GUIsse poliitika 6/4
-#TEHA: pikad read paremini vormistada
+#TEHA: lisada pöördsõnadele vorme juurde
 #TEHA: siluda ja ühtlustada generaatori koodi
 
 ###MAIN###
