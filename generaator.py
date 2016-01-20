@@ -134,8 +134,6 @@ def tee_luuletus(v6tmes6nad, kaalud=[-0.5,-0.7, 0.5, 0.2, 0.5, -0.5, 0.2, -0.5, 
     #print("enne abifunci", v6tmes6nad)
     rida, viimane_s6na, kasutatud = abifunktsioon(v6tmes6nad, kaalud, kasutatud)
 
-    #print(rida)
-    #print(tekst)
     tekst.append(rida)
     v6tmes6na = viimane_s6na.strip(".")
     tee_luuletus(v6tmes6na, kaalud, ridu, tekst, loendur, kasutatud)
@@ -143,16 +141,21 @@ def tee_luuletus(v6tmes6nad, kaalud=[-0.5,-0.7, 0.5, 0.2, 0.5, -0.5, 0.2, -0.5, 
 
 
 
-#TEHA: mitmeharuline rekursioon (kogu luuletuse skoori arvutamine), parima luuletuse esitamine  8/10= 0.8
-#TEHA: kui ei leia viimast sõna siis lisada rida "viimane sõna, sünonüüm"  4/5
-#TEHA: kui ei leia viimast sõna siis lisada rida "viimane sõna, riimuv sõna" kus riimuv sõna on sama lõpu ja silpide arvuga 4/5
-#TEHA: salvestada päringute tulemused anmbaasi: päritud võtmesõnad ja vanasõnad 2/10
-#THEA: normaliseerida  iga seti skoorid 9/8
-#TEHA: features: riimub? sama pikkus mis eelmisel? 4/8
-#TEHA: parafraseerija: ei kõige esimeseks 5/5
-#TEHA: kaks eraldi parafraseerimsit 9/10
-#TEHA: lisada pöördsõnadele vorme juurde
-#TEHA: siluda ja ühtlustada generaatori koodi
+#TEHA:
+# - mitmeharuline rekursioon (kogu luuletuse skoori arvutamine), parima luuletuse esitamine  8/10= 0.8
+# - kui ei leia viimast sõna siis lisada rida "viimane sõna, sünonüüm"  4/5
+# - kui ei leia viimast sõna siis lisada rida "viimane sõna, riimuv sõna"
+#       kus riimuv sõna on sama lõpu ja silpide arvuga 4/5
+# - salvestada päringute tulemused anmbaasi: päritud võtmesõnad ja vanasõnad 2/10
+# - normaliseerida  iga seti skoorid 9/8
+# - features: riimub? sama pikkus mis eelmisel? 4/8
+# - parafraseerija: ei kõige esimeseks 5/5
+# - kaks eraldi parafraseerimsit 9/10
+# - lisada pöördsõnadele vorme juurde
+# - siluda ja ühtlustada generaatori koodi
+# - implementeerida kaaludeõppe kood: guisse meeldib/ei meeldi nupp,
+#       kaalude ja vastuse salvestamine; lisada nupp "minu kaalud"
+
 
 ###MAIN###
 
